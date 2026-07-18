@@ -1,0 +1,27 @@
+(function(App){
+  App.config={
+    routes:['introduction','study','accessibility','regression'],
+    seattleBounds:[[-122.445,47.49],[-122.235,47.745]],
+    data:{
+      neighborhoods:'data/neighborhoods.js',walksheds:'data/walksheds.js',parks:'data/parks.js',
+      reviews:'data/reviews_points.js',reviewDetails:'data/reviews_details.js',
+      parkReviews:'data/park_reviews.js?v=20260718-park-linked',
+      reviewPhotoCache:'data/review_photo_cache.js?v=20260717-minimum-full',
+      blockgroups:'data/blockgroups.js',blockgroupDemographics:'data/blockgroup_demographics.js?v=20260718-profile',
+      blockgroupWalksheds:'data/blockgroup_walksheds_15min.js?v=20260718-15min',
+      activityAccessibility:'data/activity_accessibility.js?v=20260718-diversity',
+      accessRoutes15:'data/access_routes_15min.js?v=20260718-routes',
+      homeScene:'data/home_scene.js'
+    },
+    video:{
+      src:'',
+      expectedPath:'assets/video/introduction.mp4',
+      poster:''
+    },
+    parkColors:{
+      '自然绿地':'#174d37','综合公园':'#2f7652','运动游憩':'#4e9667','社区与特色':'#78ac7e',
+      '滨水与观景':'#4a9186','线性与街旁':'#a2c49a','管理及其他':'#899b89'
+    },
+    accessColors:['#f599a1','#c485a8','#a577ad','#7e84bc','#5299cc']
+  };
+})(window.SeattleApp);

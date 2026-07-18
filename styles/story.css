@@ -1,0 +1,32 @@
+.story-mode body{cursor:none}
+.story-mode .chapter-nav,.story-mode .map-page-title,.story-mode .access-legend,.story-mode .presentation-controls,.story-mode .info-panel,.story-mode .maplibregl-ctrl-top-right,.story-mode .toast{display:none!important}
+.story-mode .maplibregl-ctrl-attrib{opacity:.68}
+.story-mode #map{background:#f4f5f1}
+
+/* A typographic caption replaces the former upper-left information panel. */
+.access-story-caption{position:fixed;z-index:41;left:50%;top:28px;transform:translateX(-50%);width:300px;text-align:center;color:#17253b;pointer-events:none;text-shadow:0 1px 8px rgba(255,255,255,.95);transition:opacity .35s,transform .55s cubic-bezier(.2,.8,.2,1)}
+.access-story-caption small{display:block;font-size:7px;font-weight:850;letter-spacing:.18em;color:#6d687a;transition:opacity .25s,transform .35s}
+.access-story-caption strong{display:block;margin-top:6px;font-size:16px;line-height:1.1;letter-spacing:-.02em;transition:opacity .25s,transform .35s}
+.access-story-caption:after{content:"";display:block;width:170px;height:2px;margin:11px auto 0;border-radius:99px;background:rgba(31,46,65,.12)}
+.access-story-caption i{position:absolute;left:65px;bottom:0;width:0;height:2px;border-radius:99px;background:linear-gradient(90deg,#f599a1,#a577ad,#5299cc);transition:width .8s ease}
+.access-story-caption.is-changing small,.access-story-caption.is-changing strong{opacity:0;transform:translateY(-5px)}
+.access-story-caption.is-intro strong,.access-story-caption.is-outro strong{font-size:18px}
+
+/* Named destinations and the selected origin use icons instead of simple dots. */
+.story-location-marker{--story-color:#5299cc;display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none;filter:drop-shadow(0 7px 12px rgba(29,42,52,.17));animation:story-marker-in .65s both}
+.story-location-marker span{display:block;max-width:158px;padding:5px 8px 4px;border-radius:8px;background:rgba(252,253,251,.88);color:#263849;font-size:8px;font-weight:760;line-height:1.15;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 5px 18px rgba(34,46,55,.11);backdrop-filter:blur(10px)}
+.story-location-marker i{width:31px;height:31px;border-radius:10px;background:var(--story-color);border:2px solid rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:0 5px 15px rgba(35,47,57,.2)}
+.story-location-marker svg{width:18px;height:18px;fill:#fff}
+.story-home-location i{width:36px;height:36px;border-radius:11px}
+.story-home-location svg{width:21px;height:21px}
+.story-home-location span{font-size:9px;color:#17253b}
+@keyframes story-marker-in{from{opacity:0}to{opacity:1}}
+
+@media(max-width:760px){
+  .access-story-caption{top:18px;width:250px}.access-story-caption strong{font-size:14px}.access-story-caption:after{width:140px}.access-story-caption i{left:55px}
+  .story-location-marker span{max-width:112px;font-size:7px}.story-location-marker i{width:28px;height:28px}.story-home-location i{width:32px;height:32px}
+}
+@media(min-width:2200px){
+  .access-story-caption{top:38px;width:400px}.access-story-caption small{font-size:9px}.access-story-caption strong{font-size:21px}.access-story-caption.is-intro strong,.access-story-caption.is-outro strong{font-size:24px}.access-story-caption:after{width:226px;height:3px;margin-top:15px}.access-story-caption i{left:87px;height:3px}
+  .story-location-marker{gap:7px}.story-location-marker span{max-width:205px;padding:7px 11px 6px;border-radius:10px;font-size:10.5px}.story-location-marker i{width:41px;height:41px;border-radius:13px}.story-location-marker svg{width:24px;height:24px}.story-home-location i{width:48px;height:48px;border-radius:15px}.story-home-location svg{width:28px;height:28px}.story-home-location span{font-size:12px}
+}

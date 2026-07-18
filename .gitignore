@@ -1,0 +1,14 @@
+# Local build and QA dependencies are not part of the public website.
+/tools/
+/*.png
+/*.jpg
+/*.jpeg
+/*.log
+/.DS_Store
+**/__pycache__/
+**/*.pyc
+
+# Platform-specific local launchers are unnecessary on GitHub Pages.
+/start_presentation.bat
+/start_windows.bat
+/start_mac.command
