@@ -248,3 +248,34 @@
   .analysis-modal.is-accessibility-panel .analysis-dots{gap:5px}
   .analysis-modal.is-accessibility-panel .analysis-dots button.is-active{width:18px}
 }
+
+/* Portrait and near-square Accessibility figures use the available height: image left, narrative right. */
+@media(min-width:1100px){
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-portrait,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-square{
+    grid-template-columns:minmax(0,1.08fr) minmax(245px,.92fr);
+    grid-template-rows:minmax(0,1fr);gap:18px;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-portrait .analysis-figure-stage,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-square .analysis-figure-stage{
+    grid-column:1;grid-row:1;height:100%;min-height:0;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-portrait .analysis-narrative,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-square .analysis-narrative{
+    display:block;grid-column:2;grid-row:1;align-self:center;max-height:100%;overflow:auto;padding:12px 5px 12px 0;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-portrait .analysis-narrative-title,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-square .analysis-narrative-title,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-portrait .analysis-narrative-body,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-square .analysis-narrative-body{
+    display:block;max-height:none;overflow:visible;padding:0;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-portrait .analysis-narrative-title h3,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-square .analysis-narrative-title h3{
+    font-size:22px;line-height:1.08;margin:8px 0 17px;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-portrait .analysis-narrative-body p,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-square .analysis-narrative-body p{
+    font-size:10.5px;line-height:1.68;
+  }
+}
