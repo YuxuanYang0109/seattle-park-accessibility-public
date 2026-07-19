@@ -1,5 +1,9 @@
 (async function(App){
   try{
+    window.addEventListener('resize',()=>{
+      const resetViewport=()=>document.querySelector('#app')?.scrollTo(0,0);
+      requestAnimationFrame(resetViewport);window.setTimeout(resetViewport,160);
+    });
     await App.Core.MapManager.init();
     App.Components.AnalysisModal?.init();
     App.Components.MapViewMode?.init();

@@ -25,7 +25,8 @@
     const index=order.indexOf(route),counter=document.querySelector('#page-counter'),bar=document.querySelector('.presentation-controls em'),topBar=document.querySelector('.chapter-progress i'),next=document.querySelector('#next-page span');
     if(index<0){counter.textContent='';bar.style.width='0';topBar.style.width='0';return;}
     counter.textContent=String(index+1).padStart(2,'0')+' / 04';const width=((index+1)/order.length*100)+'%';bar.style.width=width;topBar.style.width=width;next.textContent=index===order.length-1?'Back to home':'Next';
-    const active=document.querySelector(`[data-route-link="${route}"]`);active?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    const active=document.querySelector(`[data-route-link="${route}"]`),tabs=active?.closest('.folder-tabs');
+    if(active&&tabs)tabs.scrollTo({left:active.offsetLeft-(tabs.clientWidth-active.offsetWidth)/2,behavior:'smooth'});
   }
   function next(){const i=order.indexOf(App.state.route);navigate(i<0?order[0]:i===order.length-1?'home':order[i+1]);}
   function previous(){const i=order.indexOf(App.state.route);navigate(i<=0?'home':order[i-1]);}

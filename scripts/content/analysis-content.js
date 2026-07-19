@@ -88,25 +88,25 @@ window.ANALYSIS_CONTENT = {
         text: '部分活动机会受到自然地理和城市功能布局的限制。水上活动主要集中于滨水地区，内陆社区居民获得游泳及亲水活动的机会较少。文化活动则更多集中于城市中心和区域节点，使外围地区居民较难参与节庆、公共活动和社区聚会。\n\nSome activity opportunities are constrained by physical geography and urban functions. Water-based activities are concentrated along the waterfront, limiting access for inland residents. Cultural activities are also clustered in the urban center and regional nodes, reducing access to festivals, public events, and community gatherings in peripheral neighborhoods.'
       },
       {
-        image: 'assets/accessibility_figure/09-web.webp',
+        image: 'assets/accessibility_figure/08-web.webp',
         label: 'Figure 08',
         metric: 'G07',
-        title: '儿童和老年人口的活动需求与公园供给存在空间错配\nMismatch Between Age-Specific Demand and Supply',
-        text: '儿童和老年人口分布与相关活动供给之间存在明显错配。部分儿童和老年人口集中的居住区缺乏足够的儿童游憩、体育和休闲设施，说明现有公园供给尚未充分回应不同年龄群体的需求。\n\nA clear mismatch exists between the distribution of children and older adults and the provision of relevant activities. Several neighborhoods with high concentrations of these groups lack sufficient play, sports, and leisure facilities, indicating that current park provision does not adequately address age-specific needs.'
+        title: '现有优先发展区域尚未完全识别活动公平性缺口\nGaps in Existing Priority Areas',
+        text: '活动可达性低值区与西雅图现有优先发展区域并不完全重合。尽管现有政策关注公园面积、开放空间质量和社会公平，但指标仍较为宏观，难以识别具体活动类型、多样性和服务能力的不足。因此，现有优先发展策略尚未完全回应活动机会公平问题。\n\nAreas of low activity accessibility do not fully overlap with Seattle’s existing prioritization areas. Although current policies consider park acreage, open-space quality, and social equity, their indicators remain too broad to identify deficiencies in specific activity types, diversity, and service capacity. Existing prioritization strategies therefore do not fully address inequities in recreational opportunities.'
       },
       {
-        image: 'assets/accessibility_figure/10-web.webp',
+        image: 'assets/accessibility_figure/09-web.webp',
         label: 'Figure 09',
         metric: 'G05',
         title: '儿童和老年人口的活动需求与公园供给存在空间错配\nMismatch Between Age-Specific Demand and Supply',
         text: '儿童和老年人口分布与相关活动供给之间存在明显错配。部分儿童和老年人口集中的居住区缺乏足够的儿童游憩、体育和休闲设施，说明现有公园供给尚未充分回应不同年龄群体的需求。\n\nA clear mismatch exists between the distribution of children and older adults and the provision of relevant activities. Several neighborhoods with high concentrations of these groups lack sufficient play, sports, and leisure facilities, indicating that current park provision does not adequately address age-specific needs.'
       },
       {
-        image: 'assets/accessibility_figure/08-web.webp',
+        image: 'assets/accessibility_figure/10-web.webp',
         label: 'Figure 10',
         metric: 'G06',
-        title: '现有优先发展区域尚未完全识别活动公平性缺口\nGaps in Existing Priority Areas',
-        text: '活动可达性低值区与西雅图现有优先发展区域并不完全重合。尽管现有政策关注公园面积、开放空间质量和社会公平，但指标仍较为宏观，难以识别具体活动类型、多样性和服务能力的不足。因此，现有优先发展策略尚未完全回应活动机会公平问题。\n\nAreas of low activity accessibility do not fully overlap with Seattle’s existing prioritization areas. Although current policies consider park acreage, open-space quality, and social equity, their indicators remain too broad to identify deficiencies in specific activity types, diversity, and service capacity. Existing prioritization strategies therefore do not fully address inequities in recreational opportunities.'
+        title: '儿童和老年人口的活动需求与公园供给存在空间错配\nMismatch Between Age-Specific Demand and Supply',
+        text: '儿童和老年人口分布与相关活动供给之间存在明显错配。部分儿童和老年人口集中的居住区缺乏足够的儿童游憩、体育和休闲设施，说明现有公园供给尚未充分回应不同年龄群体的需求。\n\nA clear mismatch exists between the distribution of children and older adults and the provision of relevant activities. Several neighborhoods with high concentrations of these groups lack sufficient play, sports, and leisure facilities, indicating that current park provision does not adequately address age-specific needs.'
       }
     ]
   },
