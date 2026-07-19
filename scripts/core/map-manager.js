@@ -21,15 +21,16 @@
   function on(event,layer,handler){if(typeof layer==='function'){handler=layer;layer=null;}layer?map.on(event,layer,handler):map.on(event,handler);handlers.push({event,layer,handler});}
   function clearHandlers(){handlers.splice(0).forEach(h=>h.layer?map.off(h.event,h.layer,h.handler):map.off(h.event,h.handler));map.getCanvas().style.cursor='';}
   function clearPopups(){document.querySelectorAll('.maplibregl-popup').forEach(el=>el.remove());}
+  function orbitProfile(){const mobile=innerWidth<760;return {focus:[-122.332,47.618],zoom:mobile?13.3:14,radius:[mobile?0.0135:0.0145,mobile?0.009:0.01],period:56000};}
   function fitSeattle(duration=900){stopAllMotion();map.stop();map.fitBounds(App.config.seattleBounds,{padding:{top:120,bottom:75,left:45,right:45},duration,maxZoom:11.5});}
   function startHomeMotion(){
-    stopAllMotion();map.stop();const generation=++homeMotionGeneration;homeStart=performance.now();const mobile=innerWidth<760,zoom=mobile?13.3:14,focus=[-122.332,47.618],radius=[mobile ? 0.0135 : 0.0145,mobile ? 0.009 : 0.01],period=56000;
+    stopAllMotion();map.stop();const generation=++homeMotionGeneration;homeStart=performance.now(),{zoom,focus,radius,period}=orbitProfile();
     function orbit(time){if(generation!==homeMotionGeneration||App.state.route!=='home'){homeFrame=0;return;}const angle=((time-homeStart)%period)/period*Math.PI*2;map.jumpTo({center:[focus[0]+Math.cos(angle)*radius[0],focus[1]+Math.sin(angle)*radius[1]],zoom,bearing:0,pitch:0});homeFrame=requestAnimationFrame(orbit);}
     homeFrame=requestAnimationFrame(orbit);
   }
   function stopHomeMotion(){homeMotionGeneration++;if(homeFrame)cancelAnimationFrame(homeFrame);homeFrame=0;homeStart=0;}
   function startOverviewMotion(route){
-    stopAllMotion();map.stop();const generation=++overviewMotionGeneration;overviewStart=performance.now();const mobile=innerWidth<760,focus=[-122.335,47.618],zoom=mobile?10.55:11.15,radius=[mobile ? 0.026 : 0.019,mobile ? 0.017 : 0.012],period=68000;
+    stopAllMotion();map.stop();const generation=++overviewMotionGeneration;overviewStart=performance.now(),{zoom,focus,radius,period}=orbitProfile();
     function orbit(time){if(generation!==overviewMotionGeneration||App.state.route!==route){overviewFrame=0;return;}const angle=((time-overviewStart)%period)/period*Math.PI*2;map.jumpTo({center:[focus[0]+Math.cos(angle)*radius[0],focus[1]+Math.sin(angle)*radius[1]],zoom,bearing:0,pitch:0});overviewFrame=requestAnimationFrame(orbit);}
     overviewFrame=requestAnimationFrame(orbit);
   }
