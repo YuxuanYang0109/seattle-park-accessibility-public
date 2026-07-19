@@ -7,15 +7,12 @@
 
   function setImage(item){
     figureImage.classList.remove('is-loaded');
-    reader.classList.remove('is-landscape','is-portrait');
+    const stacked=item.layout==='stacked';
+    reader.classList.toggle('is-stacked',stacked);
+    reader.classList.toggle('is-split',!stacked);
     figureFallback.hidden=true;
     figureImage.alt=item.alt||item.title||'Analysis figure';
-    figureImage.onload=()=>{
-      const landscape=figureImage.naturalWidth/figureImage.naturalHeight>=1.4;
-      reader.classList.toggle('is-landscape',landscape);
-      reader.classList.toggle('is-portrait',!landscape);
-      figureImage.classList.add('is-loaded');
-    };
+    figureImage.onload=()=>figureImage.classList.add('is-loaded');
     figureImage.onerror=()=>{
       figureImage.classList.remove('is-loaded');
       figureFallback.hidden=false;
