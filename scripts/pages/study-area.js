@@ -72,23 +72,23 @@
 
   async function showPark(feature){
     const clicked=feature.properties,name=String(clicked.NAME||'');
-    App.Components.MapViewMode?.pauseForSelection('study');
+    App.Components.MapViewMode?.pauseForSelection('introduction');
     selectedPark=name;const version=++selectionVersion;
     mm.map.setFilter('study-selected-park',['==',['get','NAME'],name]);
     panel.open('#study-panel',panel.loading('OFFICIAL PARK · LINKING REVIEWS',clicked.PMA_NAME||name));
     try{
       await Promise.all([loader.load('parkReviews'),loader.load('reviewDetails'),loader.load('reviewPhotoCache')]);
-      if(version!==selectionVersion||selectedPark!==name||App.state.route!=='study')return;
+      if(version!==selectionVersion||selectedPark!==name||App.state.route!=='introduction')return;
       const park=window.WEBMAP_DATA.parkReviews?.parks?.[name];
       panel.open('#study-panel',parkReviewHtml(clicked,park,window.REVIEW_DETAILS||{},window.REVIEW_PHOTO_CACHE||{}));
       bindReviewImages();
-    }catch(error){if(version===selectionVersion&&selectedPark===name&&App.state.route==='study')panel.open('#study-panel',`<span class="panel-kicker">DATA ERROR</span><h2 class="panel-title">Unable to link park reviews</h2><p class="panel-copy">${esc(error.message)}</p>`);}
+    }catch(error){if(version===selectionVersion&&selectedPark===name&&App.state.route==='introduction')panel.open('#study-panel',`<span class="panel-kicker">DATA ERROR</span><h2 class="panel-title">Unable to link park reviews</h2><p class="panel-copy">${esc(error.message)}</p>`);}
   }
 
   function clearSelection(options={}){
     selectedPark=null;selectionVersion++;mm.map.stop();panel.close('#study-panel');
     if(mm.map?.getLayer('study-selected-park'))mm.map.setFilter('study-selected-park',['==',['get','NAME'],'__none__']);
-    if(options.release!==false)App.Components.MapViewMode?.releaseSelection('study');
+    if(options.release!==false)App.Components.MapViewMode?.releaseSelection('introduction');
   }
 
   function bind(){
@@ -96,9 +96,10 @@
     mm.on('mouseenter','study-parks-fill',()=>mm.map.getCanvas().style.cursor='pointer');
     mm.on('mouseleave','study-parks-fill',()=>mm.map.getCanvas().style.cursor='');
   }
-  App.Pages.study={
-    async enter(){document.querySelector('#app').classList.remove('is-map-hidden');renderLegend();panel.close('#study-panel');try{await loader.load('parks');addLayers();mm.setVisible(ids);bind();App.Components.MapViewMode?.enter('study');}catch(error){App.utils.toast(error.message);}},
-    exit(){App.Components.MapViewMode?.exit('study');clearSelection({release:false});},
+  // Chapter 01 keeps the Introduction identity but presents the park-and-review map content.
+  App.Pages.introduction={
+    async enter(){document.querySelector('#app').classList.remove('is-map-hidden');renderLegend();panel.close('#study-panel');try{await loader.load('parks');addLayers();mm.setVisible(ids);bind();App.Components.MapViewMode?.enter('introduction');}catch(error){App.utils.toast(error.message);}},
+    exit(){App.Components.MapViewMode?.exit('introduction');clearSelection({release:false});},
     clearSelection
   };
 })(window.SeattleApp);

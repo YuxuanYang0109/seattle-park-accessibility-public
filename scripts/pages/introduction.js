@@ -17,7 +17,7 @@
   function postActivity(){
     frames.forEach(frame=>{
       if(!frame.src)return;
-      frame.contentWindow?.postMessage({type:'park-scene:active',active:App.state.route==='introduction'&&frame.closest('[data-comment-scene]')?.dataset.commentScene===activeScene},'*');
+      frame.contentWindow?.postMessage({type:'park-scene:active',active:App.state.route==='study'&&frame.closest('[data-comment-scene]')?.dataset.commentScene===activeScene},'*');
     });
   }
 
@@ -54,7 +54,7 @@
   }
 
   function onMessage(event){
-    if(App.state.route!=='introduction')return;
+    if(App.state.route!=='study')return;
     if(!frames.some(frame=>frame.contentWindow===event.source))return;
     if(event.data?.type==='park-scene:view-exhibition'){
       jumpTo('mosaic');
@@ -64,7 +64,7 @@
   }
 
   function onStoryWheel(event){
-    if(App.state.route!=='introduction')return;
+    if(App.state.route!=='study')return;
     event.preventDefault();
     stepByWheel(event.deltaY);
   }
@@ -94,7 +94,8 @@
     setActive('rain');
   }
 
-  App.Pages.introduction={
+  // Chapter 02 keeps the Study/Methodology identity but presents the comment-story content.
+  App.Pages.study={
     async enter(previous){
       init();
       App.Core.MapManager.setVisible([]);

@@ -1,8 +1,8 @@
 (function(App){
   const mm=App.Core.MapManager;
-  const supported=new Set(['study','accessibility']);
-  const modes={study:'static',accessibility:'static'};
-  const selectionActive={study:false,accessibility:false};
+  const supported=new Set(['introduction','accessibility']);
+  const modes={introduction:'static',accessibility:'static'};
+  const selectionActive={introduction:false,accessibility:false};
 
   function button(route){return document.querySelector(`[data-map-view-toggle="${route}"]`);}
   function render(route){

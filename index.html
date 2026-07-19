@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="styles/story.css?v=20260718-story3">
   <link rel="stylesheet" href="styles/analysis-modal.css?v=20260718-analysis1">
   <link rel="stylesheet" href="styles/comment-story.css?v=20260719-comments6">
-  <link rel="stylesheet" href="styles/view-mode.css?v=20260719-detail17">
+  <link rel="stylesheet" href="styles/view-mode.css?v=20260719-chapter-swap18">
 </head>
 <body>
   <div id="app" data-route="home">
@@ -53,7 +53,7 @@
         <div class="home-scene-label glass"><b>Central Seattle · sixteen parks</b><span>Dense core with active northeast, southeast and waterfront edges</span></div>
       </section>
 
-      <section class="page intro-page" data-page="introduction" aria-label="Introduction">
+      <section class="page intro-page" data-page="study" aria-label="Study Area and Data Collection">
         <div class="comment-story" id="comment-story">
           <section class="comment-scene is-rain" data-comment-scene="rain">
             <div class="comment-scene-stage">
@@ -104,21 +104,21 @@
         <div class="comment-scene-status glass"><b id="comment-scene-counter">01 / 04</b><span>Privacy-safe synthetic park voices</span></div>
       </section>
 
-      <section class="page map-page study-page" data-page="study" aria-label="Study Area and Data Collection">
-        <button class="map-view-toggle glass" type="button" data-map-view-toggle="study" aria-pressed="false" aria-label="Switch to orbiting map view" title="Switch to orbit view">
+      <section class="page map-page study-page" data-page="introduction" aria-label="Introduction">
+        <button class="map-view-toggle glass" type="button" data-map-view-toggle="introduction" aria-pressed="false" aria-label="Switch to orbiting map view" title="Switch to orbit view">
           <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9" ry="4.8"/><path d="M3.5 10.6c1.5-4.4 5-7.3 8.5-7.3s7 2.9 8.5 7.3M3.5 13.4c1.5 4.4 5 7.3 8.5 7.3s7-2.9 8.5-7.3"/><circle class="orbit-dot" cx="21" cy="12" r="1.6"/></svg>
           <span><small>VIEW MODE</small><b>Static</b></span>
         </button>
         <button class="analysis-trigger glass" type="button" data-analysis-open="study" aria-label="Open Study Area analysis" title="Open analysis">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9m7 10V5m7 14v-7"/><path d="M3 19.5h18"/><circle cx="5" cy="7" r="1.5"/><circle cx="12" cy="3" r="1.5"/><circle cx="19" cy="10" r="1.5"/></svg>
         </button>
-        <div class="page-title map-page-title"><span>02 — Study Area &amp; Data Collection</span><h1>Parks and aggregated public experience</h1><p>点击公园，在右侧查看官方信息、聚合评分与公开版脱敏说明。</p></div>
+        <div class="page-title map-page-title"><span>01 — Introduction</span><h1>Parks and aggregated public experience</h1><p>点击公园，在右侧查看官方信息、聚合评分与公开版脱敏说明。</p></div>
         <div class="floating-legend glass study-legend">
-          <div class="legend-heading"><b>Park types</b><button data-panel-close="study">×</button></div>
+          <div class="legend-heading"><b>Park types</b><button data-panel-close="introduction">×</button></div>
           <div id="study-park-legend" class="park-legend"></div>
         </div>
         <aside class="info-panel glass" id="study-panel" aria-live="polite">
-          <button class="panel-close" data-panel-close="study">×</button>
+          <button class="panel-close" data-panel-close="introduction">×</button>
           <div id="study-panel-content"></div>
         </aside>
       </section>
@@ -206,14 +206,14 @@
   <script src="scripts/content/analysis-content.js?v=20260719-result17"></script>
   <script src="scripts/components/analysis-modal.js?v=20260718-analysis1"></script>
   <script src="scripts/components/info-panel.js?v=20260718-diversity"></script>
-  <script src="scripts/components/map-view-mode.js?v=20260719-detail17"></script>
+  <script src="scripts/components/map-view-mode.js?v=20260719-chapter-swap18"></script>
   <script src="scripts/pages/home.js"></script>
-  <script src="scripts/pages/introduction.js?v=20260719-rating10"></script>
-  <script src="scripts/pages/study-area.js?v=20260719-detail17"></script>
+  <script src="scripts/pages/introduction.js?v=20260719-chapter-swap18"></script>
+  <script src="scripts/pages/study-area.js?v=20260719-chapter-swap18"></script>
   <script src="scripts/pages/accessibility.js?v=20260719-detail17"></script>
   <script src="scripts/pages/accessibility-story.js?v=20260718-story3"></script>
   <script src="scripts/pages/regression.js"></script>
-  <script src="scripts/core/router.js?v=20260719-detail17"></script>
+  <script src="scripts/core/router.js?v=20260719-chapter-swap18"></script>
   <script src="scripts/app.js?v=20260719-viewmode15"></script>
 </body>
 </html>

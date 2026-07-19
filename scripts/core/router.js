@@ -34,8 +34,8 @@
     document.querySelector('#start-presentation').addEventListener('click',()=>navigate('introduction'));
     document.querySelector('#next-page').addEventListener('click',next);document.querySelector('#previous-page').addEventListener('click',previous);
     document.querySelectorAll('[data-panel-close]').forEach(button=>button.addEventListener('click',()=>{
-      const route=button.dataset.panelClose==='study'?'study':'accessibility';
-      if(App.Pages[route]?.clearSelection)App.Pages[route].clearSelection();else App.Components.InfoPanel.close(route==='study'?'#study-panel':'#access-panel');
+      const route=button.dataset.panelClose==='introduction'?'introduction':'accessibility';
+      if(App.Pages[route]?.clearSelection)App.Pages[route].clearSelection();else App.Components.InfoPanel.close(route==='introduction'?'#study-panel':'#access-panel');
     }));
     document.addEventListener('keydown',event=>{if(App.Components.AnalysisModal?.isOpen()||['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;if(event.key==='ArrowRight')next();if(event.key==='ArrowLeft')previous();if(event.key==='Escape')navigate('home');});
     window.addEventListener('hashchange',()=>{const route=location.hash.replace('#','');if(App.Pages[route])navigate(route);});
