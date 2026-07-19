@@ -9,14 +9,9 @@
       reviewPhotoCache:'data/review_photo_cache.js?v=20260717-minimum-full',
       blockgroups:'data/blockgroups.js',blockgroupDemographics:'data/blockgroup_demographics.js?v=20260718-profile',
       blockgroupWalksheds:'data/blockgroup_walksheds_15min.js?v=20260718-15min',
-      activityAccessibility:'data/activity_accessibility.js?v=20260718-diversity',
+      activityAccessibility:'data/activity_accessibility.js?v=20260719-rating',
       accessRoutes15:'data/access_routes_15min.js?v=20260718-routes',
       homeScene:'data/home_scene.js'
-    },
-    video:{
-      src:'',
-      expectedPath:'assets/video/introduction.mp4',
-      poster:''
     },
     parkColors:{
       '自然绿地':'#174d37','综合公园':'#2f7652','运动游憩':'#4e9667','社区与特色':'#78ac7e',

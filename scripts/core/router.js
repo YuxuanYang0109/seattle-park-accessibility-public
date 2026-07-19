@@ -5,6 +5,7 @@
     if(navigating||!App.Pages[route]||route===App.state.route)return;
     navigating=true;const previous=App.state.route,mm=App.Core.MapManager;
     try{
+      App.Components.AnalysisModal?.close({restoreFocus:false});
       if(App.Pages[previous]?.exit)await App.Pages[previous].exit(route);
       mm.clearHandlers();mm.clearPopups();mm.setVisible([]);
       App.state.route=route;document.querySelector('#app').dataset.route=route;
@@ -27,7 +28,7 @@
     document.querySelector('#start-presentation').addEventListener('click',()=>navigate('introduction'));
     document.querySelector('#next-page').addEventListener('click',next);document.querySelector('#previous-page').addEventListener('click',previous);
     document.querySelectorAll('[data-panel-close]').forEach(button=>button.addEventListener('click',()=>App.Components.InfoPanel.close(button.dataset.panelClose==='study'?'#study-panel':'#access-panel')));
-    document.addEventListener('keydown',event=>{if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;if(event.key==='ArrowRight')next();if(event.key==='ArrowLeft')previous();if(event.key==='Escape')navigate('home');});
+    document.addEventListener('keydown',event=>{if(App.Components.AnalysisModal?.isOpen()||['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;if(event.key==='ArrowRight')next();if(event.key==='ArrowLeft')previous();if(event.key==='Escape')navigate('home');});
   }
   App.Core.Router={init,navigate,next,previous};
 })(window.SeattleApp);

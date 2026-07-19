@@ -1,0 +1,76 @@
+/* Scroll-led Introduction: isolated p5 scenes inside the existing presentation shell. */
+.intro-page{background:#102322}
+.legacy-video-stage{display:none!important}
+.comment-story{
+  position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+  height:100%;height:100dvh;
+  scroll-snap-type:y mandatory;scroll-behavior:smooth;overscroll-behavior-y:contain;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;background:#102322;
+}
+.comment-story::-webkit-scrollbar{display:none}
+.comment-scene{position:relative;width:100%;height:100%;height:100dvh;min-height:590px;scroll-snap-align:start;scroll-snap-stop:always;background:#102322}
+.comment-scene-stage{
+  position:absolute;top:calc(var(--nav-height) + 16px);right:0;bottom:0;left:0;width:100vw;border-radius:0;overflow:hidden;
+  background:radial-gradient(circle at 35% 25%,#31504a,#122826 65%);
+}
+.comment-scene.is-rain{background:#294c64 url("../assets/park-scenes/backgrounds/comment-rain-background.png") center / cover no-repeat}
+.comment-scene.is-rain:after{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(8,20,32,.18)}
+.comment-scene.is-rain .comment-scene-stage{top:0;background:#294c64 url("../assets/park-scenes/backgrounds/comment-rain-background.png") center / cover no-repeat}
+.comment-scene.is-rain .comment-scene-stage iframe{background:#294c64}
+.comment-scene.is-lake .comment-scene-stage{background:radial-gradient(circle at 58% 34%,#607b75,#173532 70%)}
+.comment-scene.is-family .comment-scene-stage{background:radial-gradient(circle at 60% 38%,#75674b,#24352e 72%)}
+.comment-scene-stage:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:inset 0 -120px 130px rgba(5,15,18,.1)}
+.comment-scene-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;opacity:0;transition:opacity .75s var(--ease),transform 1.1s var(--ease);transform:scale(1.012);background:#152a2a}
+.comment-scene-stage.is-loaded iframe{opacity:1;transform:none}
+.comment-scene-loading{position:absolute;z-index:1;inset:0;display:grid;place-content:center;justify-items:center;gap:11px;color:rgba(242,247,241,.72);transition:opacity .45s,visibility .45s}
+.comment-scene-loading i{width:28px;height:28px;border:2px solid rgba(255,255,255,.18);border-top-color:rgba(255,255,255,.82);border-radius:50%;animation:comment-spin .85s linear infinite}
+.comment-scene-loading span{font-size:8px;letter-spacing:.16em;text-transform:uppercase}
+.comment-scene-stage.is-loaded .comment-scene-loading{opacity:0;visibility:hidden}
+@keyframes comment-spin{to{transform:rotate(360deg)}}
+
+.comment-scene-copy{
+  position:absolute;z-index:5;left:48px;bottom:88px;width:min(440px,calc(100vw - 150px));
+  border-radius:22px;padding:19px 21px 17px;background:rgba(248,250,247,.76);pointer-events:none;
+  opacity:.56;transform:translateY(16px);transition:opacity .55s var(--ease),transform .55s var(--ease);
+}
+.comment-scene:nth-child(even) .comment-scene-copy{left:auto;right:48px}
+.comment-scene.is-current .comment-scene-copy{opacity:1;transform:none}
+.comment-scene-copy>span{display:block;font-size:8px;letter-spacing:.17em;color:var(--purple);font-weight:850}
+.comment-scene-copy h2{font-size:clamp(28px,3vw,43px);line-height:.98;letter-spacing:-.052em;margin:10px 0 12px;max-width:390px}
+.comment-scene-copy p{font-size:10.5px;line-height:1.65;color:#596672;margin:0;max-width:390px}
+.comment-scene-copy button{pointer-events:auto;margin-top:14px;padding:7px 7px 7px 11px;border:0;border-radius:12px;background:rgba(235,239,236,.9);display:flex;align-items:center;gap:12px;cursor:pointer;transition:.25s var(--ease)}
+.comment-scene-copy button:hover{background:#fff;transform:translateY(2px)}
+.comment-scene-copy button small{font-size:7px;letter-spacing:.14em;color:#65716f;font-weight:800}
+.comment-scene-copy button b{width:27px;height:27px;border-radius:9px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px}
+
+.comment-scene-index{
+  position:absolute;z-index:8;right:32px;top:50%;transform:translateY(-50%);width:46px;padding:9px 7px;
+  border:0;border-radius:17px;display:grid;gap:3px;background:rgba(250,251,249,.74);pointer-events:auto;
+}
+.comment-scene-index button{position:relative;width:32px;height:34px;border:0;background:transparent;border-radius:10px;display:grid;place-items:center;cursor:pointer}
+.comment-scene-index button i{width:6px;height:6px;border-radius:50%;background:#b6bfbc;transition:.28s var(--ease)}
+.comment-scene-index button span{position:absolute;right:37px;top:50%;transform:translate(7px,-50%);padding:6px 9px;border-radius:9px;background:rgba(22,34,49,.88);color:#fff;font-size:7px;letter-spacing:.1em;text-transform:uppercase;opacity:0;visibility:hidden;transition:.2s;white-space:nowrap}
+.comment-scene-index button:hover span{opacity:1;visibility:visible;transform:translate(0,-50%)}
+.comment-scene-index button.is-active{background:rgba(255,255,255,.85)}
+.comment-scene-index button.is-active i{width:19px;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue))}
+.comment-scene-status{position:absolute;z-index:8;top:106px;right:92px;padding:9px 12px;border:0;border-radius:13px;background:rgba(250,251,249,.7);pointer-events:none}
+.comment-scene-status b,.comment-scene-status span{display:block}.comment-scene-status b{font-size:9px;letter-spacing:.14em}.comment-scene-status span{font-size:7px;color:#718079;margin-top:3px}
+
+@media(max-width:760px){
+  .comment-scene{min-height:560px}
+  .comment-scene-stage{top:calc(var(--nav-height) + 8px);right:0;bottom:0;left:0;width:100vw;border-radius:0}
+  .comment-scene.is-rain .comment-scene-stage{top:0}
+  .comment-scene-copy,.comment-scene:nth-child(even) .comment-scene-copy{left:16px;right:16px;bottom:84px;width:auto;padding:15px 16px 13px;border-radius:18px}
+  .comment-scene-copy h2{font-size:28px;margin:8px 0 9px;max-width:320px}
+  .comment-scene-copy p{font-size:9px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .comment-scene-copy button{margin-top:10px}
+  .comment-scene-index{right:14px;width:40px;padding:7px 4px;border-radius:14px}
+  .comment-scene-index button{width:32px;height:31px}
+  .comment-scene-index button span{display:none}
+  .comment-scene-status{display:none}
+}
+@media(max-width:480px){
+  .comment-scene-copy,.comment-scene:nth-child(even) .comment-scene-copy{bottom:76px}
+  .comment-scene-copy h2{font-size:25px}
+  .comment-scene-copy p{max-width:290px;-webkit-line-clamp:2}
+}

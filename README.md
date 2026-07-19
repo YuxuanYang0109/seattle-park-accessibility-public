@@ -1,5 +1,5 @@
-# Seattle Park Accessibility — Public Release
+# Seattle Park Accessibility — Public Demo
 
-Privacy-minimized public presentation deployed with GitHub Pages.
+Privacy-minimized static presentation of Seattle park accessibility. The public build contains official or aggregate geography, Census Block Group aggregates, derived 15-minute accessibility scores, and synthetic comment-scene text.
 
-See [PUBLIC_DATA_NOTICE.md](PUBLIC_DATA_NOTICE.md) for the publication boundary. The full research workspace, raw review records, reviewer profiles, and review photographs are maintained separately and are not included here.
+See `PUBLIC_DATA_NOTICE.md` for the publication boundary.

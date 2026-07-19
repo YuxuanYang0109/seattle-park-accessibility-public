@@ -1,6 +1,7 @@
 (async function(App){
   try{
     await App.Core.MapManager.init();
+    App.Components.AnalysisModal?.init();
     App.Core.Router.init();
     await App.Pages.home.enter();
     const requested=location.hash.replace('#','');

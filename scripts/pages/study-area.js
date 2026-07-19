@@ -49,23 +49,23 @@
     const area=Number(park?.areaM2??clicked.AREA_M2??0);
     const rating=park?.rating;
     const placeChips=places.slice(0,6).map(place=>`<span>${esc(place.placeName)} <b>${place.rating?num(place.rating,1):'—'}</b></span>`).join('');
-    return `<span class="panel-kicker">OFFICIAL PARK · PRIVACY-SAFE PUBLIC SUMMARY</span><h2 class="panel-title">${esc(displayName)}</h2><p class="panel-subtitle">${esc(park?.typeGroup||clicked.TYPE_GROUP||'Park')} · ${esc(park?.useName||clicked.USE_NAME||'Park')}</p>
+    return `<span class="panel-kicker">OFFICIAL PARK · PRIVACY-SAFE AGGREGATES</span><h2 class="panel-title">${esc(displayName)}</h2><p class="panel-subtitle">${esc(park?.typeGroup||clicked.TYPE_GROUP||'Park')} · ${esc(park?.useName||clicked.USE_NAME||'Park')}</p>
       <div class="park-review-layout">
         <section class="park-facts-column">
           <div class="park-rating-hero"><div><span>PARK RATING</span><strong>${rating==null?'N/A':num(rating,1)}</strong><small>${rating==null?'No linked rating':'out of 5 · review-weighted'}</small></div><i>${rating==null?'☆':'★'}</i></div>
           <div class="panel-metrics park-fact-metrics">
             <div class="panel-metric"><strong>${num(area/10000,2)} ha</strong><span>Official park area</span></div>
-            <div class="panel-metric"><strong>${num(park?.reviewTotal||0,0)}</strong><span>Aggregated rating count</span></div>
+            <div class="panel-metric"><strong>${num(park?.reviewTotal||0,0)}</strong><span>Google reviews</span></div>
             <div class="panel-metric"><strong>${esc(park?.owner||clicked.OWNER||'—')}</strong><span>Owner code</span></div>
-            <div class="panel-metric"><strong>${num(park?.reviewPlaces||0,0)}</strong><span>Public summary records</span></div>
+            <div class="panel-metric"><strong>${num(park?.reviewPlaces||0,0)}</strong><span>Linked places</span></div>
           </div>
           ${park?.address?`<p class="panel-copy"><b>Address</b><br>${esc(park.address)}</p>`:''}
-          <div class="park-place-links"><span>PUBLISHED SUMMARY</span>${placeChips||'<p>No linked Google place.</p>'}</div>
-          <p class="profile-source">Public release: only official park attributes and aggregate ratings are included. Individual reviewer data and photographs have been removed.</p>
+          <div class="park-place-links"><span>LINKED GOOGLE PLACES</span>${placeChips||'<p>No linked Google place.</p>'}</div>
+          <p class="profile-source">Public release: aggregate place_rating values only; individual reviews and photographs are excluded.</p>
         </section>
         <section class="park-reviews-column">
-          <div class="panel-section-heading"><div><span>PUBLIC DATA SUMMARY</span><b>Aggregated rating only</b></div><small>${shown.length} shown</small></div>
-          ${shown.length?`<div class="review-stack">${shown.map(review=>reviewCard(review,cache)).join('')}</div>`:'<div class="empty-review-state"><i>☆</i><b>No aggregate rating available</b><p>This park has no aggregate rating record in the public release.</p></div>'}
+          <div class="panel-section-heading"><div><span>AGGREGATED EXPERIENCE</span><b>Rating summary</b></div><small>${shown.length} shown</small></div>
+          ${shown.length?`<div class="review-stack">${shown.map(review=>reviewCard(review,cache)).join('')}</div>`:'<div class="empty-review-state"><i>☆</i><b>No linked review content</b><p>This official park has no usable review text or image in the current dataset.</p></div>'}
         </section>
       </div>`;
   }

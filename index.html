@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="styles/pages.css?v=20260718-diversity">
   <link rel="stylesheet" href="styles/responsive.css?v=20260718-park-linked">
   <link rel="stylesheet" href="styles/story.css?v=20260718-story3">
+  <link rel="stylesheet" href="styles/analysis-modal.css?v=20260718-analysis1">
+  <link rel="stylesheet" href="styles/comment-story.css?v=20260719-comments6">
 </head>
 <body>
   <div id="app" data-route="home">
@@ -51,22 +53,61 @@
       </section>
 
       <section class="page intro-page" data-page="introduction" aria-label="Introduction">
-        <div class="video-stage">
-          <video id="intro-video" playsinline muted preload="metadata"></video>
-          <div class="video-placeholder" id="video-placeholder">
-            <div class="video-orbit"><i></i><span>▶</span></div>
-            <p class="eyebrow">INTRODUCTION FILM</p>
-            <h2>Video placeholder</h2>
-            <p>将视频放入 <code>assets/video/introduction.mp4</code></p>
-          </div>
-          <div class="video-shade"></div>
-          <div class="page-title video-title"><span>01 — Introduction</span><h1>Why park accessibility matters</h1></div>
-          <button class="video-control" id="video-control" aria-label="Play or pause video">▶</button>
+        <div class="comment-story" id="comment-story">
+          <section class="comment-scene is-rain" data-comment-scene="rain">
+            <div class="comment-scene-stage">
+              <iframe title="Continuous Seattle park comment rain" data-scene-frame data-src="assets/park-scenes/index.html?scene=rain&amp;embed=1&amp;build=20260719-public11" loading="eager" sandbox="allow-scripts allow-same-origin"></iframe>
+              <div class="comment-scene-loading"><i></i><span>Loading comment rain</span></div>
+            </div>
+            <article class="comment-scene-copy glass">
+              <span>01 / 04 · COMMENT RAIN</span><h2>When the parks begin to speak</h2><p>Privacy-safe synthetic voices fall through the Seattle landscape—preserving the collective rhythm of the research interface without publishing individual reviews.</p>
+              <button type="button" data-comment-next><small>SCROLL TO CONTINUE</small><b>↓</b></button>
+            </article>
+          </section>
+          <section class="comment-scene is-park" data-comment-scene="mosaic">
+            <div class="comment-scene-stage">
+              <iframe title="Park landscape reconstructed from review fragments" data-scene-frame data-src="assets/park-scenes/index.html?embed=1&amp;build=20260719-public11" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+              <div class="comment-scene-loading"><i></i><span>Composing park voices</span></div>
+            </div>
+            <article class="comment-scene-copy glass">
+              <span>02 / 04 · TEXT LANDSCAPE</span><h2>A park made of words</h2><p>From a distance the fragments form a familiar green landscape. Up close, the image dissolves into synthetic comment fragments—each phrase demonstrating how qualitative experience can contribute to a shared picture of place.</p>
+              <button type="button" data-comment-next><small>NEXT SCENE</small><b>↓</b></button>
+            </article>
+          </section>
+          <section class="comment-scene is-lake" data-comment-scene="lake">
+            <div class="comment-scene-stage">
+              <iframe title="Lake landscape reconstructed from review fragments" data-scene-frame data-src="assets/park-scenes/index.html?scene=lake&amp;embed=1&amp;build=20260719-public11" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+              <div class="comment-scene-loading"><i></i><span>Tracing reflections</span></div>
+            </div>
+            <article class="comment-scene-copy glass">
+              <span>03 / 04 · LAKE MEMORY</span><h2>Memory settles on the water</h2><p>Privacy-safe synthetic phrases gather along light, shoreline and reflection. The scene translates everyday language into atmosphere, revealing how people remember parks through movement, calm and sensory detail.</p>
+              <button type="button" data-comment-next><small>NEXT SCENE</small><b>↓</b></button>
+            </article>
+          </section>
+          <section class="comment-scene is-family" data-comment-scene="family">
+            <div class="comment-scene-stage">
+              <iframe title="Family park scene reconstructed from review fragments" data-scene-frame data-src="assets/park-scenes/index.html?scene=family&amp;embed=1&amp;build=20260719-public11" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+              <div class="comment-scene-loading"><i></i><span>Revealing everyday life</span></div>
+            </div>
+            <article class="comment-scene-copy glass">
+              <span>04 / 04 · EVERYDAY PARK LIFE</span><h2>Every visit leaves a trace</h2><p>Families, water and vegetation remain legible while thousands of synthetic fragments move around them. The final scene connects measured accessibility with the lived experiences that give park access meaning.</p>
+            </article>
+          </section>
         </div>
+        <nav class="comment-scene-index glass" id="comment-scene-index" aria-label="Comment scene navigation">
+          <button type="button" data-comment-jump="rain" aria-label="Comment rain"><i></i><span>Rain</span></button>
+          <button type="button" data-comment-jump="mosaic" aria-label="Park text landscape"><i></i><span>Park</span></button>
+          <button type="button" data-comment-jump="lake" aria-label="Lake memory"><i></i><span>Lake</span></button>
+          <button type="button" data-comment-jump="family" aria-label="Family park life"><i></i><span>Life</span></button>
+        </nav>
+        <div class="comment-scene-status glass"><b id="comment-scene-counter">01 / 04</b><span>Privacy-safe synthetic park voices</span></div>
       </section>
 
       <section class="page map-page study-page" data-page="study" aria-label="Study Area and Data Collection">
-        <div class="page-title map-page-title"><span>02 — Study Area &amp; Data Collection</span><h1>Parks and public experience</h1><p>点击公园，在右侧同时查看官方信息、评论文本与图片。</p></div>
+        <button class="analysis-trigger glass" type="button" data-analysis-open="study" aria-label="Open Study Area analysis" title="Open analysis">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9m7 10V5m7 14v-7"/><path d="M3 19.5h18"/><circle cx="5" cy="7" r="1.5"/><circle cx="12" cy="3" r="1.5"/><circle cx="19" cy="10" r="1.5"/></svg>
+        </button>
+        <div class="page-title map-page-title"><span>02 — Study Area &amp; Data Collection</span><h1>Parks and aggregated public experience</h1><p>点击公园，在右侧查看官方信息、聚合评分与公开版脱敏说明。</p></div>
         <div class="floating-legend glass study-legend">
           <div class="legend-heading"><b>Park types</b><button data-panel-close="study">×</button></div>
           <div id="study-park-legend" class="park-legend"></div>
@@ -78,6 +119,9 @@
       </section>
 
       <section class="page map-page accessibility-page" data-page="accessibility" aria-label="Methodology Accessibility">
+        <button class="analysis-trigger glass" type="button" data-analysis-open="accessibility" aria-label="Open Accessibility analysis" title="Open analysis">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.5 9 12l3 3 7-8"/><path d="M14 7h5v5"/><path d="M4 4v16h16"/></svg>
+        </button>
         <div class="page-title map-page-title"><span>03 — Methodology · Accessibility</span><h1>Block Group 15-minute access</h1><p>536个Census Block Group覆盖研究区；点击任一Group显示其质心出发的15分钟路网步行范围。</p></div>
         <div class="floating-legend glass access-legend" id="access-metric-selector">
           <div class="access-selector-heading">
@@ -113,19 +157,50 @@
       <div><b id="page-counter">01 / 04</b><i><em></em></i></div>
       <button id="next-page"><span>Next</span> →</button>
     </div>
+    <div class="analysis-modal" id="analysis-modal" hidden aria-hidden="true">
+      <button class="analysis-backdrop" type="button" data-analysis-close aria-label="Close analysis"></button>
+      <section class="analysis-dialog" role="dialog" aria-modal="true" aria-labelledby="analysis-title" aria-describedby="analysis-intro">
+        <header class="analysis-modal-header">
+          <div><span id="analysis-eyebrow">Analysis</span><h2 id="analysis-title">Analysis Notes</h2><p id="analysis-intro"></p></div>
+          <button class="analysis-modal-close" type="button" data-analysis-close aria-label="Close analysis"><span></span><span></span></button>
+        </header>
+        <div class="analysis-reader" id="analysis-reader">
+          <figure class="analysis-figure-stage">
+            <img id="analysis-figure-image" alt="">
+            <div class="analysis-figure-fallback" id="analysis-figure-fallback" hidden><b>Figure unavailable</b><span></span></div>
+          </figure>
+          <article class="analysis-narrative">
+            <span id="analysis-item-label">Figure 01</span>
+            <h3 id="analysis-item-title"></h3>
+            <p id="analysis-item-text"></p>
+            <small id="analysis-caption"></small>
+          </article>
+        </div>
+        <div class="analysis-empty" id="analysis-empty" hidden>
+          <span>CONTENT PLACEHOLDER</span><h3>Analysis figures are being prepared.</h3><p>Add the finished image to the matching assets folder, then register its image path and text in the analysis content file.</p><code></code>
+        </div>
+        <footer class="analysis-modal-footer">
+          <div class="analysis-pager"><button id="analysis-previous" type="button" aria-label="Previous figure">←</button><span id="analysis-counter">01 / 03</span><button id="analysis-next" type="button" aria-label="Next figure">→</button></div>
+          <div class="analysis-dots" id="analysis-dots" aria-label="Figure navigation"></div>
+          <small>Use ← → keys to browse</small>
+        </footer>
+      </section>
+    </div>
     <div id="toast" class="toast glass" role="status"></div>
   </div>
 
   <script src="vendor/maplibre-gl.js"></script>
   <script src="scripts/core/namespace.js"></script>
-  <script src="scripts/config.js?v=20260718-diversity"></script>
+  <script src="scripts/config.js?v=20260719-rating"></script>
   <script src="scripts/core/data-loader.js"></script>
   <script src="scripts/core/map-manager.js"></script>
+  <script src="scripts/content/analysis-content.js?v=20260718-analysis1"></script>
+  <script src="scripts/components/analysis-modal.js?v=20260718-analysis1"></script>
   <script src="scripts/components/info-panel.js?v=20260718-diversity"></script>
   <script src="scripts/pages/home.js"></script>
-  <script src="scripts/pages/introduction.js"></script>
+  <script src="scripts/pages/introduction.js?v=20260719-public11"></script>
   <script src="scripts/pages/study-area.js?v=20260718-park-linked"></script>
-  <script src="scripts/pages/accessibility.js?v=20260718-story3"></script>
+  <script src="scripts/pages/accessibility.js?v=20260719-rating"></script>
   <script src="scripts/pages/accessibility-story.js?v=20260718-story3"></script>
   <script src="scripts/pages/regression.js"></script>
   <script src="scripts/core/router.js"></script>
