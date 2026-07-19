@@ -47,7 +47,6 @@ window.ANALYSIS_CONTENT = {
       },
       { image: 'assets/accessibility_figure/02-web.webp', label: 'Figure 02', title: '', text: '' },
       { image: 'assets/accessibility_figure/03-web.webp', label: 'Figure 03', title: '', text: '' },
-      { image: 'assets/accessibility_figure/04-web.webp', label: 'Figure 04', title: '', text: '' },
       { image: 'assets/accessibility_figure/05-web.webp', label: 'Figure 05', title: '', text: '' },
       { image: 'assets/accessibility_figure/06-web.webp', label: 'Figure 06', title: '', text: '' },
       { image: 'assets/accessibility_figure/07-web.webp', label: 'Figure 07', title: '', text: '' },
