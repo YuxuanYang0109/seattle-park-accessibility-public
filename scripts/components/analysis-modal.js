@@ -25,6 +25,7 @@
     eyebrow.textContent=section?.eyebrow||'Analysis';
     title.textContent=section?.title||'Analysis Notes';
     intro.textContent=section?.intro||'';
+    intro.hidden=!section?.intro;
     reader.hidden=!sectionItems.length;
     emptyState.hidden=Boolean(sectionItems.length);
 
@@ -41,8 +42,10 @@
     const item=sectionItems[itemIndex];
     setImage(item);
     label.textContent=item.label||`Figure ${String(itemIndex+1).padStart(2,'0')}`;
-    itemTitle.textContent=item.title||'Untitled figure';
+    itemTitle.textContent=item.title||'';
+    itemTitle.hidden=!item.title;
     text.textContent=item.text||'';
+    text.hidden=!item.text;
     caption.textContent=item.caption||'';
     caption.hidden=!item.caption;
     counter.textContent=`${String(itemIndex+1).padStart(2,'0')} / ${String(sectionItems.length).padStart(2,'0')}`;
