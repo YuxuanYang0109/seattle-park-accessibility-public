@@ -7,9 +7,15 @@
 
   function setImage(item){
     figureImage.classList.remove('is-loaded');
+    reader.classList.remove('is-landscape','is-portrait');
     figureFallback.hidden=true;
     figureImage.alt=item.alt||item.title||'Analysis figure';
-    figureImage.onload=()=>figureImage.classList.add('is-loaded');
+    figureImage.onload=()=>{
+      const landscape=figureImage.naturalWidth/figureImage.naturalHeight>=1.4;
+      reader.classList.toggle('is-landscape',landscape);
+      reader.classList.toggle('is-portrait',!landscape);
+      figureImage.classList.add('is-loaded');
+    };
     figureImage.onerror=()=>{
       figureImage.classList.remove('is-loaded');
       figureFallback.hidden=false;

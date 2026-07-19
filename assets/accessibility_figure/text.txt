@@ -1,6 +1,6 @@
 {
   image: 'assets/accessibility_figure/01.png',
-  title_cn: '大语音模型表现对比',
+  title_cn: '大语言模型表现对比',
   title_en: 'Comparison of LLM models performance',
   text_cn: '',
   text_en: ''

@@ -9,8 +9,8 @@ window.ANALYSIS_CONTENT = {
       {
         image: 'assets/description_figure/01-web.webp',
         label: 'Figure 01',
-        title: '图1 基于公园面积的公园可达性图 图2 西雅图公园与开放空间优先改善区域图\nFig.1 Park Area Accessibility Based on Park Acreage Fig.2 Seattle Park and Open Space Prioritization Areas',
-        text: '核心问题：公园面积可达性是否能够准确反映公园活动的实际供给与需求？西雅图现有的优先发展区域，是否真正实现了其公平性目标？\n\n**Core Questions:** Can park area accessibility accurately capture the actual supply of and demand for park-based activities? Have Seattle’s existing priority development areas effectively achieved their equity objectives?'
+        title: '西雅图公园可达性政策优先改善规划图与现状图对比\nFig.1 Park Area Accessibility Based on Park Acreage Fig.2 Seattle Park and Open Space Prioritization Areas',
+        text: '核心问题：公园面积可达性是否能够准确反映公园活动的实际供给与需求？西雅图现有的优先发展区域，是否真正实现了其公平性目标？\n\nCore Questions: Can park area accessibility accurately capture the actual supply of and demand for park-based activities? Have Seattle’s existing priority development areas effectively achieved their equity objectives?'
       },
       {
         image: 'assets/description_figure/02-web.webp',
@@ -28,7 +28,7 @@ window.ANALYSIS_CONTENT = {
         image: 'assets/description_figure/04-web.webp',
         label: 'Figure 04',
         title: '技术路线\nTechnical route',
-        text: ''
+        text: '该技术路线图展示了本研究如何利用 LLM 从 Google Reviews 中识别公园活动信息，并将非结构化评论文本转化为可用于空间分析的结构化数据。首先，研究收集 Google Reviews、公园点位、评分和评论数量等基础数据；随后构建七类核心活动的分类体系（G01–G07），并设计 prompt 引导 LLM 对每条评论进行多标签活动识别。之后，研究通过人工标注样本建立 ground truth，并使用 precision、recall、F1-score 和 exact match rate 对模型效果进行验证。在 review-level 分类结果的基础上，进一步汇总形成 park-level activity profiles，包括各类活动提及次数、活动多样性、completed reviews 和 weighted rating。最终，这些结构化活动数据被用于生成活动分布图、构建 2SFCA 活动可达性指标，并支持后续的空间公平性分析与规划建议。该流程的核心意义在于：LLM 并不是替代传统 GIS 与空间分析，而是作为语义提取工具，将用户评论中的真实使用经验转化为更接近实际行为的活动供给数据。\n\nThis diagram illustrates the LLM-based workflow used in this study to extract park activity information from Google Reviews and transform unstructured review texts into structured data for spatial analysis. First, the study collects Google Reviews, park locations, ratings, and review counts. It then develops a seven-group activity taxonomy (G01–G07) and designs prompts to guide the LLM in performing multi-label classification for each review. Next, human-labeled samples are used to build the ground truth, and model performance is evaluated using precision, recall, F1-score, and exact match rate. Based on the review-level classification results, the outputs are aggregated to the park level to generate park activity profiles, including activity mention counts, activity diversity, completed reviews, and weighted ratings. These structured activity indicators are then used to produce activity distribution maps, construct 2SFCA-based activity accessibility measures, and support subsequent spatial equity analysis and planning recommendations. The key contribution of this workflow is that the LLM does not replace GIS or spatial analysis; rather, it serves as a semantic extraction tool that converts user-generated reviews into activity supply data that more closely reflect actual park use.'
       }
     ]
   },
@@ -41,7 +41,7 @@ window.ANALYSIS_CONTENT = {
       {
         image: 'assets/accessibility_figure/01-web.webp',
         label: 'Figure 01',
-        title: '大语音模型表现对比\nComparison of LLM models performance',
+        title: '大语言模型表现对比\nComparison of LLM models performance',
         text: ''
       },
       { image: 'assets/accessibility_figure/02-web.webp', label: 'Figure 02', title: '', text: '' },
