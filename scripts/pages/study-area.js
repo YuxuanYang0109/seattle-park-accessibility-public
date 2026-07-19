@@ -72,6 +72,7 @@
 
   async function showPark(feature){
     const clicked=feature.properties,name=String(clicked.NAME||'');
+    App.Components.MapViewMode?.pauseForSelection('study');
     mm.map.setFilter('study-selected-park',['==',['get','NAME'],name]);
     panel.open('#study-panel',panel.loading('OFFICIAL PARK · LINKING REVIEWS',clicked.PMA_NAME||name));
     try{
@@ -88,7 +89,7 @@
     mm.on('mouseleave','study-parks-fill',()=>mm.map.getCanvas().style.cursor='');
   }
   App.Pages.study={
-    async enter(){document.querySelector('#app').classList.remove('is-map-hidden');renderLegend();panel.close('#study-panel');try{await loader.load('parks');addLayers();mm.setVisible(ids);bind();mm.fitSeattle(1000);}catch(error){App.utils.toast(error.message);}},
-    exit(){panel.close('#study-panel');if(mm.map?.getLayer('study-selected-park'))mm.map.setFilter('study-selected-park',['==',['get','NAME'],'__none__']);}
+    async enter(){document.querySelector('#app').classList.remove('is-map-hidden');renderLegend();panel.close('#study-panel');try{await loader.load('parks');addLayers();mm.setVisible(ids);bind();App.Components.MapViewMode?.enter('study');}catch(error){App.utils.toast(error.message);}},
+    exit(){App.Components.MapViewMode?.exit('study');panel.close('#study-panel');if(mm.map?.getLayer('study-selected-park'))mm.map.setFilter('study-selected-park',['==',['get','NAME'],'__none__']);}
   };
 })(window.SeattleApp);

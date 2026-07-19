@@ -1,5 +1,5 @@
 (function(App){
-  let map,loadPromise,homeFrame,homeStart=0;
+  let map,loadPromise,homeFrame,homeStart=0,homeMotionGeneration=0,overviewFrame,overviewStart=0,overviewMotionGeneration=0;
   const handlers=[],customLayers=new Set();
   const homeViews=[
     {center:[-122.336,47.678],zoom:13.05,bearing:-4},
@@ -21,13 +21,20 @@
   function on(event,layer,handler){if(typeof layer==='function'){handler=layer;layer=null;}layer?map.on(event,layer,handler):map.on(event,handler);handlers.push({event,layer,handler});}
   function clearHandlers(){handlers.splice(0).forEach(h=>h.layer?map.off(h.event,h.layer,h.handler):map.off(h.event,h.handler));map.getCanvas().style.cursor='';}
   function clearPopups(){document.querySelectorAll('.maplibregl-popup').forEach(el=>el.remove());}
-  function fitSeattle(duration=900){map.fitBounds(App.config.seattleBounds,{padding:{top:120,bottom:75,left:45,right:45},duration,maxZoom:11.5});}
+  function fitSeattle(duration=900){stopAllMotion();map.stop();map.fitBounds(App.config.seattleBounds,{padding:{top:120,bottom:75,left:45,right:45},duration,maxZoom:11.5});}
   function startHomeMotion(){
-    stopHomeMotion();homeStart=performance.now();const mobile=innerWidth<760,zoom=mobile?13.3:14,focus=[-122.332,47.618],radius=[mobile ? 0.0135 : 0.0145,mobile ? 0.009 : 0.01],period=56000;
-    function orbit(time){const angle=((time-homeStart)%period)/period*Math.PI*2;map.jumpTo({center:[focus[0]+Math.cos(angle)*radius[0],focus[1]+Math.sin(angle)*radius[1]],zoom,bearing:0,pitch:0});homeFrame=requestAnimationFrame(orbit);}
+    stopAllMotion();map.stop();const generation=++homeMotionGeneration;homeStart=performance.now();const mobile=innerWidth<760,zoom=mobile?13.3:14,focus=[-122.332,47.618],radius=[mobile ? 0.0135 : 0.0145,mobile ? 0.009 : 0.01],period=56000;
+    function orbit(time){if(generation!==homeMotionGeneration||App.state.route!=='home'){homeFrame=0;return;}const angle=((time-homeStart)%period)/period*Math.PI*2;map.jumpTo({center:[focus[0]+Math.cos(angle)*radius[0],focus[1]+Math.sin(angle)*radius[1]],zoom,bearing:0,pitch:0});homeFrame=requestAnimationFrame(orbit);}
     homeFrame=requestAnimationFrame(orbit);
   }
-  function stopHomeMotion(){if(homeFrame){cancelAnimationFrame(homeFrame);homeFrame=0;}homeStart=0;}
+  function stopHomeMotion(){homeMotionGeneration++;if(homeFrame)cancelAnimationFrame(homeFrame);homeFrame=0;homeStart=0;}
+  function startOverviewMotion(route){
+    stopAllMotion();map.stop();const generation=++overviewMotionGeneration;overviewStart=performance.now();const mobile=innerWidth<760,focus=[-122.335,47.618],zoom=mobile?10.55:11.15,radius=[mobile ? 0.026 : 0.019,mobile ? 0.017 : 0.012],period=68000;
+    function orbit(time){if(generation!==overviewMotionGeneration||App.state.route!==route){overviewFrame=0;return;}const angle=((time-overviewStart)%period)/period*Math.PI*2;map.jumpTo({center:[focus[0]+Math.cos(angle)*radius[0],focus[1]+Math.sin(angle)*radius[1]],zoom,bearing:0,pitch:0});overviewFrame=requestAnimationFrame(orbit);}
+    overviewFrame=requestAnimationFrame(orbit);
+  }
+  function stopOverviewMotion(){overviewMotionGeneration++;if(overviewFrame)cancelAnimationFrame(overviewFrame);overviewFrame=0;overviewStart=0;}
+  function stopAllMotion(){stopHomeMotion();stopOverviewMotion();}
   function resize(){setTimeout(()=>map&&map.resize(),80);}
-  App.Core.MapManager={init,get map(){return map;},addLayer,addSource,setVisible,on,clearHandlers,clearPopups,fitSeattle,startHomeMotion,stopHomeMotion,resize,customLayers};
+  App.Core.MapManager={init,get map(){return map;},get homeMotionActive(){return Boolean(homeFrame);},get overviewMotionActive(){return Boolean(overviewFrame);},addLayer,addSource,setVisible,on,clearHandlers,clearPopups,fitSeattle,startHomeMotion,stopHomeMotion,startOverviewMotion,stopOverviewMotion,stopAllMotion,resize,customLayers};
 })(window.SeattleApp);

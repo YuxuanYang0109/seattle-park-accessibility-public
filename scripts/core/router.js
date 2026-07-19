@@ -1,19 +1,25 @@
 (function(App){
   const order=App.config.routes;
-  let navigating=false;
+  let navigating=false,queuedRoute=null;
   async function navigate(route){
-    if(navigating||!App.Pages[route]||route===App.state.route)return;
+    if(!App.Pages[route])return;
+    if(navigating){queuedRoute=route;return;}
+    if(route===App.state.route)return;
     navigating=true;const previous=App.state.route,mm=App.Core.MapManager;
     try{
       App.Components.AnalysisModal?.close({restoreFocus:false});
       if(App.Pages[previous]?.exit)await App.Pages[previous].exit(route);
-      mm.clearHandlers();mm.clearPopups();mm.setVisible([]);
+      mm.stopAllMotion();mm.map.stop();mm.clearHandlers();mm.clearPopups();mm.setVisible([]);
       App.state.route=route;document.querySelector('#app').dataset.route=route;
       document.querySelectorAll('[data-page]').forEach(page=>page.classList.toggle('is-active',page.dataset.page===route));
       document.querySelectorAll('[data-route-link]').forEach(button=>{const active=button.dataset.routeLink===route;button.classList.toggle('is-active',active);active?button.setAttribute('aria-current','page'):button.removeAttribute('aria-current');});
       updateControls(route);history.replaceState(null,'','#'+route);
       mm.resize();if(App.Pages[route]?.enter)await App.Pages[route].enter(previous);
-    }finally{navigating=false;}
+    }finally{
+      navigating=false;
+      const next=queuedRoute;queuedRoute=null;
+      if(next&&next!==App.state.route)queueMicrotask(()=>navigate(next));
+    }
   }
   function updateControls(route){
     const index=order.indexOf(route),counter=document.querySelector('#page-counter'),bar=document.querySelector('.presentation-controls em'),topBar=document.querySelector('.chapter-progress i'),next=document.querySelector('#next-page span');
@@ -29,6 +35,7 @@
     document.querySelector('#next-page').addEventListener('click',next);document.querySelector('#previous-page').addEventListener('click',previous);
     document.querySelectorAll('[data-panel-close]').forEach(button=>button.addEventListener('click',()=>App.Components.InfoPanel.close(button.dataset.panelClose==='study'?'#study-panel':'#access-panel')));
     document.addEventListener('keydown',event=>{if(App.Components.AnalysisModal?.isOpen()||['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;if(event.key==='ArrowRight')next();if(event.key==='ArrowLeft')previous();if(event.key==='Escape')navigate('home');});
+    window.addEventListener('hashchange',()=>{const route=location.hash.replace('#','');if(App.Pages[route])navigate(route);});
   }
   App.Core.Router={init,navigate,next,previous};
 })(window.SeattleApp);

@@ -2,7 +2,7 @@
   const mm=App.Core.MapManager,loader=App.Core.DataLoader,panel=App.Components.InfoPanel,{escape:esc,number:num,bbox}=App.utils;
   const baseIds=['access-group-fill','access-group-hover'];
   const routeIds=['access-route-lines','access-reachable-parks','access-route-travelers'];
-  let ready=false,walkshedsReady=false,routesReady=false,bound=false,hoverPopup,routeMarkers=[],rankedAscending=[],rankingById=new Map(),featureById=new Map(),rankObserver,walkerFrame=0,walkerStart=0,walkerRoutes=[];
+  let ready=false,walkshedsReady=false,routesReady=false,hoverPopup,routeMarkers=[],rankedAscending=[],rankingById=new Map(),featureById=new Map(),rankObserver,walkerFrame=0,walkerStart=0,walkerRoutes=[];
   let activeMetric='AREA';
 
   function model(){return window.WEBMAP_DATA.activityAccessibility;}
@@ -226,6 +226,7 @@
 
   async function selectGroup(feature,fit=true,options={}){
     const p=feature.properties,id=String(p.BG_ID);
+    if(!options.story)App.Components.MapViewMode?.pauseForSelection('accessibility');
     const storyColor=scoreColor(metricRecord(id).score);
     App.state.selected=id;
     mm.map.setPaintProperty('access-group-fill','fill-opacity',['case',['==',['get','BG_ID'],id],.84,.22]);
@@ -277,11 +278,10 @@
     clearRouteMarkers();stopRouteTravelers();mm.map.setPaintProperty('access-group-fill','fill-opacity',.72);
     if(walkshedsReady)mm.map.setFilter('access-bg-walkshed-fill',['==',['get','BG_ID'],'__none__']);
     if(routesReady)routeIds.forEach(layer=>mm.map.setFilter(layer,['==',['get','BG_ID'],'__none__']));
-    mm.fitSeattle(duration);
+    if(options.fit!==false)mm.fitSeattle(duration);
   }
 
   function bind(){
-    if(bound)return;bound=true;
     mm.on('click','access-group-fill',event=>selectGroup(event.features[0]));
     mm.on('mousemove','access-group-fill',event=>{
       const feature=event.features[0],p=feature.properties,id=String(p.BG_ID),rank=rankingById.get(id);mm.map.getCanvas().style.cursor='pointer';
@@ -301,10 +301,10 @@
         activeMetric=activeMetric||model().defaultMetric;applyMetricProperties();prepareRanking();renderMetricOptions();addGroupLayers();
         if(ready)mm.map.getSource('access-blockgroups')?.setData(window.WEBMAP_DATA.blockgroups);
         const visible=[...baseIds];if(walkshedsReady)visible.push('access-bg-walkshed-fill');if(routesReady)visible.push(...routeIds);
-        mm.setVisible(visible);clearSelection();bind();
+        mm.setVisible(visible);clearSelection(0,{fit:false,resume:false});bind();App.Components.MapViewMode?.enter('accessibility');
       }catch(error){App.utils.toast(error.message);}
     },
-    exit(){hoverPopup?.remove();rankObserver?.disconnect();clearSelection();},
+    exit(){App.Components.MapViewMode?.exit('accessibility');hoverPopup?.remove();rankObserver?.disconnect();clearSelection(0,{fit:false,resume:false});},
     story:{
       async preload(){
         await Promise.all([loader.load('blockgroups'),loader.load('blockgroupDemographics'),loader.load('activityAccessibility'),loader.load('blockgroupWalksheds'),loader.load('accessRoutes15'),loader.load('neighborhoods')]);
