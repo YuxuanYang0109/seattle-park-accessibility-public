@@ -5,14 +5,82 @@
   const content=()=>window.ANALYSIS_CONTENT?.[sectionKey];
   const items=()=>content()?.items||[];
 
+  const layoutClasses=['is-split','is-stacked','is-title-only','is-visual-only'];
+  const ratioClasses=['is-panorama','is-landscape','is-square','is-portrait'];
+
+  function layoutFor(item){
+    if(item.layout==='stacked')return 'is-stacked';
+    if(item.text||item.caption)return 'is-split';
+    if(item.title)return 'is-title-only';
+    return 'is-visual-only';
+  }
+
+  function ratioFor(width,height){
+    const ratio=width/Math.max(1,height);
+    if(ratio>=2.35)return 'is-panorama';
+    if(ratio>=1.15)return 'is-landscape';
+    if(ratio<=.82)return 'is-portrait';
+    return 'is-square';
+  }
+
+  function sizeDialog(item,width,height){
+    const layout=layoutFor(item);
+    const ratio=width/Math.max(1,height);
+    const compact=window.innerWidth<=760;
+    const viewportMargin=compact?16:48;
+    const maxWidth=Math.max(320,window.innerWidth-viewportMargin);
+    const maxHeight=Math.max(420,window.innerHeight-viewportMargin);
+    let targetWidth;
+    let targetHeight;
+
+    if(layout==='is-visual-only'){
+      const chrome=compact?138:148;
+      const horizontalSpace=compact?32:60;
+      const stageHeight=Math.min(maxHeight-chrome,(maxWidth-horizontalSpace)/ratio);
+      targetWidth=Math.min(maxWidth,Math.max(compact?320:520,stageHeight*ratio+horizontalSpace));
+      targetHeight=Math.min(maxHeight,Math.max(compact?300:430,stageHeight+chrome));
+    }else if(layout==='is-title-only'){
+      const chrome=compact?194:210;
+      const horizontalSpace=compact?32:60;
+      const stageHeight=Math.min(maxHeight-chrome,(maxWidth-horizontalSpace)/ratio);
+      targetWidth=Math.min(maxWidth,Math.max(compact?340:720,stageHeight*ratio+horizontalSpace));
+      targetHeight=Math.min(maxHeight,Math.max(compact?370:500,stageHeight+chrome));
+    }else if(layout==='is-stacked'){
+      targetWidth=Math.min(maxWidth,Math.max(1080,Math.min(1480,ratio*470)));
+      targetHeight=Math.min(maxHeight,Math.max(720,(targetWidth-60)/ratio+330));
+    }else{
+      targetWidth=Math.min(maxWidth,Math.max(1080,760+ratio*340));
+      targetHeight=maxHeight;
+    }
+
+    dialog.style.setProperty('--analysis-dialog-width',`${Math.round(targetWidth)}px`);
+    dialog.style.setProperty('--analysis-dialog-height',`${Math.round(targetHeight)}px`);
+  }
+
+  function applyImageProfile(item,width,height){
+    const layout=layoutFor(item);
+    const ratioClass=ratioFor(width,height);
+    [reader,dialog].forEach(element=>{
+      element.classList.remove(...layoutClasses,...ratioClasses);
+      element.classList.add(layout,ratioClass);
+    });
+    reader.style.setProperty('--analysis-image-ratio',String(width/Math.max(1,height)));
+    sizeDialog(item,width,height);
+  }
+
   function setImage(item){
     figureImage.classList.remove('is-loaded');
-    const stacked=item.layout==='stacked';
-    reader.classList.toggle('is-stacked',stacked);
-    reader.classList.toggle('is-split',!stacked);
+    const provisionalLayout=layoutFor(item);
+    [reader,dialog].forEach(element=>{
+      element.classList.remove(...layoutClasses);
+      element.classList.add(provisionalLayout);
+    });
     figureFallback.hidden=true;
     figureImage.alt=item.alt||item.title||'Analysis figure';
-    figureImage.onload=()=>figureImage.classList.add('is-loaded');
+    figureImage.onload=()=>{
+      applyImageProfile(item,figureImage.naturalWidth,figureImage.naturalHeight);
+      figureImage.classList.add('is-loaded');
+    };
     figureImage.onerror=()=>{
       figureImage.classList.remove('is-loaded');
       figureFallback.hidden=false;
@@ -133,6 +201,9 @@
     previous.addEventListener('click',()=>show(itemIndex-1));
     next.addEventListener('click',()=>show(itemIndex+1));
     document.addEventListener('keydown',onKeydown);
+    window.addEventListener('resize',()=>{
+      if(!modal.hidden&&figureImage.naturalWidth)applyImageProfile(items()[itemIndex],figureImage.naturalWidth,figureImage.naturalHeight);
+    });
   }
 
   App.Components.AnalysisModal={init,open,close,isOpen:()=>Boolean(modal&&!modal.hidden)};
