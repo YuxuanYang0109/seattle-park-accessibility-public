@@ -48,7 +48,14 @@
   text_en: 'Some activity opportunities are constrained by physical geography and urban functions. Water-based activities are concentrated along the waterfront, limiting access for inland residents. Cultural activities are also clustered in the urban center and regional nodes, reducing access to festivals, public events, and community gatherings in peripheral neighborhoods.'
 }
 {
-  images: ['assets/accessibility_figure/09.jpg', 'assets/accessibility_figure/10.jpg'],
+  image: 'assets/accessibility_figure/09.jpg',
+  title_cn: '儿童和老年人口的活动需求与公园供给存在空间错配',
+  title_en: 'Mismatch Between Age-Specific Demand and Supply',
+  text_cn: '儿童和老年人口分布与相关活动供给之间存在明显错配。部分儿童和老年人口集中的居住区缺乏足够的儿童游憩、体育和休闲设施，说明现有公园供给尚未充分回应不同年龄群体的需求。',
+  text_en: 'A clear mismatch exists between the distribution of children and older adults and the provision of relevant activities. Several neighborhoods with high concentrations of these groups lack sufficient play, sports, and leisure facilities, indicating that current park provision does not adequately address age-specific needs.'
+}
+{
+  image: 'assets/accessibility_figure/10.jpg',
   title_cn: '儿童和老年人口的活动需求与公园供给存在空间错配',
   title_en: 'Mismatch Between Age-Specific Demand and Supply',
   text_cn: '儿童和老年人口分布与相关活动供给之间存在明显错配。部分儿童和老年人口集中的居住区缺乏足够的儿童游憩、体育和休闲设施，说明现有公园供给尚未充分回应不同年龄群体的需求。',

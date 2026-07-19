@@ -62,37 +62,49 @@ window.ANALYSIS_CONTENT = {
       {
         image: 'assets/accessibility_figure/04-web.webp',
         label: 'Figure 04',
+        metric: 'RATING',
         title: '公园面积可达性与活动可达性存在明显差异\nMismatch Between Park Area and Activity Accessibility',
         text: '公园面积可达性并不能充分反映居民实际获得的活动机会。部分地区虽然邻近公园或面积可达性较高，但活动类型、服务容量和设施配置仍然有限，说明到达公园并不等同于获得多样且适宜的活动服务。\n\nPark-area accessibility does not fully reflect residents’ actual access to recreational opportunities. Some neighborhoods are close to parks or have high area-based accessibility but still offer limited activity types, service capacity, and facilities. Reaching a park therefore does not necessarily ensure access to diverse and appropriate activities.'
       },
       {
         image: 'assets/accessibility_figure/05-web.webp',
         label: 'Figure 05',
+        metric: 'DIVERSITY',
         title: '公园活动可达性呈现显著的中心—外围空间分异\nSpatial Disparities in Activity Accessibility',
         text: '西雅图中心城区及邻近地区在活动多样性、出行、健身、体育、家庭、休闲和文化活动等方面具有较高可达性，可能与活动供给丰富、步行网络连续和公园使用热度较高有关。相比之下，南部地区在多数活动类别中表现出持续低可达性，反映出供给不足、步行连通性较弱和人口竞争压力较高等问题。\n\nCentral Seattle and adjacent neighborhoods show high accessibility across activity diversity, mobility, fitness, sports, family, leisure, and cultural activities. This pattern may be related to diverse activity provision, continuous pedestrian networks, and greater park popularity. In contrast, southern Seattle consistently exhibits low accessibility across most categories, reflecting insufficient provision, limited pedestrian connectivity, and stronger population competition.'
       },
       {
         image: 'assets/accessibility_figure/06-web.webp',
         label: 'Figure 06',
+        metric: 'G04',
         title: '公园面积不能替代活动设施与功能供给\nPark Size Does Not Equal Activity Provision',
         text: '公园面积与活动多样性的空间分布并不完全一致。部分大型公园主要提供自然体验、步行和休闲活动，而面积较小但设施密集的城市公园可能支持更多活动类型。因此，增加公园面积不能替代对设施、项目和活动功能的精细配置。\n\nThe spatial distributions of park area and activity diversity do not fully correspond. Some large parks mainly support nature-based experiences, walking, and leisure, whereas smaller but highly programmed urban parks may provide a wider range of activities. Increasing park area therefore cannot substitute for targeted facilities, programs, and activity functions.'
       },
       {
         image: 'assets/accessibility_figure/07-web.webp',
         label: 'Figure 07',
+        metric: 'DIVERSITY',
         title: '不同活动类型表现出明显的地理依赖性\nGeographic Differences in Activity Accessibility',
         text: '部分活动机会受到自然地理和城市功能布局的限制。水上活动主要集中于滨水地区，内陆社区居民获得游泳及亲水活动的机会较少。文化活动则更多集中于城市中心和区域节点，使外围地区居民较难参与节庆、公共活动和社区聚会。\n\nSome activity opportunities are constrained by physical geography and urban functions. Water-based activities are concentrated along the waterfront, limiting access for inland residents. Cultural activities are also clustered in the urban center and regional nodes, reducing access to festivals, public events, and community gatherings in peripheral neighborhoods.'
       },
       {
-        images: ['assets/accessibility_figure/09-web.webp','assets/accessibility_figure/10-web.webp'],
+        image: 'assets/accessibility_figure/09-web.webp',
         label: 'Figure 08',
-        layout: 'stacked',
+        metric: 'G07',
+        title: '儿童和老年人口的活动需求与公园供给存在空间错配\nMismatch Between Age-Specific Demand and Supply',
+        text: '儿童和老年人口分布与相关活动供给之间存在明显错配。部分儿童和老年人口集中的居住区缺乏足够的儿童游憩、体育和休闲设施，说明现有公园供给尚未充分回应不同年龄群体的需求。\n\nA clear mismatch exists between the distribution of children and older adults and the provision of relevant activities. Several neighborhoods with high concentrations of these groups lack sufficient play, sports, and leisure facilities, indicating that current park provision does not adequately address age-specific needs.'
+      },
+      {
+        image: 'assets/accessibility_figure/10-web.webp',
+        label: 'Figure 09',
+        metric: 'G05',
         title: '儿童和老年人口的活动需求与公园供给存在空间错配\nMismatch Between Age-Specific Demand and Supply',
         text: '儿童和老年人口分布与相关活动供给之间存在明显错配。部分儿童和老年人口集中的居住区缺乏足够的儿童游憩、体育和休闲设施，说明现有公园供给尚未充分回应不同年龄群体的需求。\n\nA clear mismatch exists between the distribution of children and older adults and the provision of relevant activities. Several neighborhoods with high concentrations of these groups lack sufficient play, sports, and leisure facilities, indicating that current park provision does not adequately address age-specific needs.'
       },
       {
         image: 'assets/accessibility_figure/08-web.webp',
-        label: 'Figure 09',
+        label: 'Figure 10',
+        metric: 'G06',
         title: '现有优先发展区域尚未完全识别活动公平性缺口\nGaps in Existing Priority Areas',
         text: '活动可达性低值区与西雅图现有优先发展区域并不完全重合。尽管现有政策关注公园面积、开放空间质量和社会公平，但指标仍较为宏观，难以识别具体活动类型、多样性和服务能力的不足。因此，现有优先发展策略尚未完全回应活动机会公平问题。\n\nAreas of low activity accessibility do not fully overlap with Seattle’s existing prioritization areas. Although current policies consider park acreage, open-space quality, and social equity, their indicators remain too broad to identify deficiencies in specific activity types, diversity, and service capacity. Existing prioritization strategies therefore do not fully address inequities in recreational opportunities.'
       }

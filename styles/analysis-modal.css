@@ -200,3 +200,51 @@
   .analysis-modal-footer{grid-template-columns:1fr}
   .analysis-dots{display:none}
 }
+
+/* Accessibility keeps the thematic map visible while the reader occupies the right half. */
+@media(min-width:761px){
+  .analysis-modal.is-accessibility-panel{
+    place-items:end end;padding:94px 22px 18px 0;pointer-events:none;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-backdrop{
+    background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;pointer-events:none;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-dialog{
+    width:min(720px,calc(50vw - 22px))!important;height:calc(100vh - 112px)!important;
+    border-radius:28px;background:rgba(249,250,248,.9);pointer-events:auto;
+    box-shadow:-20px 24px 70px rgba(20,29,43,.18),inset 0 0 0 1px rgba(255,255,255,.72);
+  }
+  .analysis-modal.is-accessibility-panel .analysis-modal-header{padding:20px 22px 13px}
+  .analysis-modal.is-accessibility-panel .analysis-modal-header h2{font-size:23px}
+  .analysis-modal.is-accessibility-panel .analysis-modal-close{width:38px;height:38px;flex-basis:38px;border-radius:13px}
+  .analysis-modal.is-accessibility-panel .analysis-modal-close span{left:11px;top:18px}
+  .analysis-modal.is-accessibility-panel .analysis-reader,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-split,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-stacked,
+  .analysis-modal.is-accessibility-panel .analysis-reader.is-title-only{
+    grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(220px,1fr) auto;
+    gap:10px;padding:0 22px 12px;overflow:hidden;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader .analysis-figure-stage{
+    grid-column:1;grid-row:2;min-height:0;border-radius:19px;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader .analysis-narrative{display:contents}
+  .analysis-modal.is-accessibility-panel .analysis-reader .analysis-narrative-title{
+    grid-column:1;grid-row:1;padding:1px 3px 0;min-width:0;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader .analysis-narrative-title h3{
+    max-width:none;font-size:21px;line-height:1.12;letter-spacing:-.035em;margin:6px 0 0;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader .analysis-narrative-body{
+    grid-column:1;grid-row:3;align-self:start;max-height:132px;overflow:auto;padding:3px 5px 0;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader .analysis-narrative-body p{
+    max-width:none;font-size:10.5px;line-height:1.6;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-reader .analysis-narrative-body small{
+    max-width:none;margin-top:10px;padding-top:9px;
+  }
+  .analysis-modal.is-accessibility-panel .analysis-modal-footer{min-height:54px;padding:0 22px 12px}
+  .analysis-modal.is-accessibility-panel .analysis-dots{gap:5px}
+  .analysis-modal.is-accessibility-panel .analysis-dots button.is-active{width:18px}
+}

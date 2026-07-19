@@ -1,6 +1,6 @@
 (function(App){
   let modal,dialog,figureStage,figureImage,figureFallback,conceptVisual,eyebrow,title,intro,label,itemTitle,text,caption,counter,dots,previous,next,emptyState,reader;
-  let sectionKey='study',itemIndex=0,lastFocus=null,isInitialized=false,closeTimer=null,profileWidth=1,profileHeight=1;
+  let sectionKey='study',itemIndex=0,lastFocus=null,isInitialized=false,closeTimer=null,profileWidth=1,profileHeight=1,accessibilityMapAdjusted=false;
 
   const content=()=>window.ANALYSIS_CONTENT?.[sectionKey];
   const items=()=>content()?.items||[];
@@ -143,6 +143,36 @@
     });
   }
 
+  function syncAccessibilityMetric(item){
+    if(sectionKey!=='accessibility'||App.state.route!=='accessibility'||!item.metric)return;
+    App.Pages.accessibility?.story?.setMetric(item.metric);
+  }
+
+  function focusAccessibilityMap(){
+    if(App.state.route!=='accessibility'||App.state.selected)return;
+    const mm=App.Core.MapManager,map=mm?.map;
+    if(!map)return;
+    App.Components.MapViewMode?.pauseForSelection('accessibility');
+    map.stop();
+    map.fitBounds(App.config.seattleBounds,{
+      padding:{top:120,bottom:70,left:34,right:Math.round(window.innerWidth*.5)+34},
+      duration:720,maxZoom:11.5
+    });
+    accessibilityMapAdjusted=true;
+  }
+
+  function restoreAccessibilityMap(){
+    if(!accessibilityMapAdjusted)return;
+    accessibilityMapAdjusted=false;
+    if(App.state.selected)return;
+    const viewMode=App.Components.MapViewMode;
+    if(viewMode?.getMode('accessibility')==='orbit')viewMode.releaseSelection('accessibility');
+    else{
+      viewMode?.releaseSelection('accessibility');
+      if(App.state.route==='accessibility')App.Core.MapManager.fitSeattle(620);
+    }
+  }
+
   function render(){
     const section=content();
     const sectionItems=items();
@@ -165,6 +195,7 @@
     itemIndex=Math.max(0,Math.min(itemIndex,sectionItems.length-1));
     const item=sectionItems[itemIndex];
     setImage(item);
+    syncAccessibilityMetric(item);
     label.textContent=item.label||`Figure ${String(itemIndex+1).padStart(2,'0')}`;
     itemTitle.textContent=item.title||'';
     itemTitle.hidden=!item.title;
@@ -194,14 +225,17 @@
   function open(key,index=0){
     if(!window.ANALYSIS_CONTENT?.[key])return;
     clearTimeout(closeTimer);
+    if(sectionKey==='accessibility'&&key!=='accessibility')restoreAccessibilityMap();
     sectionKey=key;
     itemIndex=index;
     lastFocus=document.activeElement;
+    modal.classList.toggle('is-accessibility-panel',key==='accessibility');
     render();
     modal.hidden=false;
     requestAnimationFrame(()=>modal.classList.add('is-open'));
     modal.setAttribute('aria-hidden','false');
     document.querySelector('#app')?.classList.add('analysis-is-open');
+    if(key==='accessibility')focusAccessibilityMap();
     dialog.querySelector('.analysis-modal-close').focus({preventScroll:true});
   }
 
@@ -210,6 +244,7 @@
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden','true');
     document.querySelector('#app')?.classList.remove('analysis-is-open');
+    restoreAccessibilityMap();
     clearTimeout(closeTimer);
     closeTimer=window.setTimeout(()=>{modal.hidden=true;},260);
     if(options.restoreFocus!==false&&lastFocus?.isConnected)lastFocus.focus({preventScroll:true});
