@@ -50,14 +50,14 @@ window.ANALYSIS_CONTENT = {
   },
   accessibility: {
     eyebrow: '15-minute E2SFCA',
-    title: 'Accessibility Analysis',
+      title: 'Accessibility Results',
     intro: 'Figures and interpretations for accessibility results will be assembled here.',
     folder: 'assets/accessibility_figure/',
     items: []
   },
   regression: {
     eyebrow: 'Spatial model results',
-    title: 'Regression Analysis',
+      title: 'Regression Results',
     intro: 'Future regression figures and model interpretations can use the same component.',
     folder: 'assets/regression_figure/',
     items: []

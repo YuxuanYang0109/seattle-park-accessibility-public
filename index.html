@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="styles/story.css?v=20260718-story3">
   <link rel="stylesheet" href="styles/analysis-modal.css?v=20260718-analysis1">
   <link rel="stylesheet" href="styles/comment-story.css?v=20260719-comments6">
-  <link rel="stylesheet" href="styles/view-mode.css?v=20260719-viewmode15">
+  <link rel="stylesheet" href="styles/view-mode.css?v=20260719-detail17">
 </head>
 <body>
   <div id="app" data-route="home">
@@ -27,8 +27,8 @@
       <nav class="folder-tabs">
         <button data-route-link="introduction"><span>01</span>Introduction</button>
         <button data-route-link="study"><span>02</span>Study Area &amp; Data</button>
-        <button data-route-link="accessibility"><span>03</span>Accessibility</button>
-        <button data-route-link="regression"><span>04</span>Regression</button>
+        <button data-route-link="accessibility"><span>03</span>Result</button>
+        <button data-route-link="regression"><span>04</span>Result</button>
       </nav>
       <div class="chapter-progress"><i></i></div>
     </header>
@@ -123,15 +123,15 @@
         </aside>
       </section>
 
-      <section class="page map-page accessibility-page" data-page="accessibility" aria-label="Methodology Accessibility">
+      <section class="page map-page accessibility-page" data-page="accessibility" aria-label="Accessibility Result">
         <button class="map-view-toggle glass" type="button" data-map-view-toggle="accessibility" aria-pressed="false" aria-label="Switch to orbiting map view" title="Switch to orbit view">
           <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9" ry="4.8"/><path d="M3.5 10.6c1.5-4.4 5-7.3 8.5-7.3s7 2.9 8.5 7.3M3.5 13.4c1.5 4.4 5 7.3 8.5 7.3s7-2.9 8.5-7.3"/><circle class="orbit-dot" cx="21" cy="12" r="1.6"/></svg>
           <span><small>VIEW MODE</small><b>Static</b></span>
         </button>
-        <button class="analysis-trigger glass" type="button" data-analysis-open="accessibility" aria-label="Open Accessibility analysis" title="Open analysis">
+        <button class="analysis-trigger glass" type="button" data-analysis-open="accessibility" aria-label="Open Accessibility results" title="Open results">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.5 9 12l3 3 7-8"/><path d="M14 7h5v5"/><path d="M4 4v16h16"/></svg>
         </button>
-        <div class="page-title map-page-title"><span>03 — Methodology · Accessibility</span><h1>Block Group 15-minute access</h1><p>536个Census Block Group覆盖研究区；点击任一Group显示其质心出发的15分钟路网步行范围。</p></div>
+        <div class="page-title map-page-title"><span>03 — Result</span><h1>Block Group 15-minute access</h1><p>536个Census Block Group覆盖研究区；点击任一Group显示其质心出发的15分钟路网步行范围。</p></div>
         <div class="floating-legend glass access-legend" id="access-metric-selector">
           <div class="access-selector-heading">
             <span>15-MINUTE E2SFCA</span>
@@ -148,9 +148,9 @@
         </aside>
       </section>
 
-      <section class="page regression-page" data-page="regression" aria-label="Methodology Regression">
+      <section class="page regression-page" data-page="regression" aria-label="Regression Result">
         <div class="regression-shell glass">
-          <div class="page-title regression-title"><span>04 — Methodology · Regression</span><h1>Spatially varying relationships</h1><p>预留机器学习地理加权回归结果展示区域。</p></div>
+          <div class="page-title regression-title"><span>04 — Result</span><h1>Spatially varying relationships</h1><p>预留机器学习地理加权回归结果展示区域。</p></div>
           <div class="regression-grid">
             <article class="reg-map-placeholder placeholder-card"><div class="placeholder-map"><i></i><i></i><i></i></div><span>LOCAL COEFFICIENT MAP</span><h3>Spatial result map</h3></article>
             <article class="metric-placeholder placeholder-card"><span>MODEL PERFORMANCE</span><div class="metric-skeleton"><i></i><i></i><i></i></div></article>
@@ -203,17 +203,17 @@
   <script src="scripts/config.js?v=20260719-access-color13"></script>
   <script src="scripts/core/data-loader.js"></script>
   <script src="scripts/core/map-manager.js?v=20260719-homeorbit16"></script>
-  <script src="scripts/content/analysis-content.js?v=20260718-analysis1"></script>
+  <script src="scripts/content/analysis-content.js?v=20260719-result17"></script>
   <script src="scripts/components/analysis-modal.js?v=20260718-analysis1"></script>
   <script src="scripts/components/info-panel.js?v=20260718-diversity"></script>
-  <script src="scripts/components/map-view-mode.js?v=20260719-viewmode15"></script>
+  <script src="scripts/components/map-view-mode.js?v=20260719-detail17"></script>
   <script src="scripts/pages/home.js"></script>
   <script src="scripts/pages/introduction.js?v=20260719-rating10"></script>
-  <script src="scripts/pages/study-area.js?v=20260719-viewmode15"></script>
-  <script src="scripts/pages/accessibility.js?v=20260719-viewmode15"></script>
+  <script src="scripts/pages/study-area.js?v=20260719-detail17"></script>
+  <script src="scripts/pages/accessibility.js?v=20260719-detail17"></script>
   <script src="scripts/pages/accessibility-story.js?v=20260718-story3"></script>
   <script src="scripts/pages/regression.js"></script>
-  <script src="scripts/core/router.js?v=20260719-viewmode15"></script>
+  <script src="scripts/core/router.js?v=20260719-detail17"></script>
   <script src="scripts/app.js?v=20260719-viewmode15"></script>
 </body>
 </html>

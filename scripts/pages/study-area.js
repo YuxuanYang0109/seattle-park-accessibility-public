@@ -1,7 +1,7 @@
 (function(App){
   const mm=App.Core.MapManager,loader=App.Core.DataLoader,panel=App.Components.InfoPanel,{escape:esc,number:num}=App.utils;
   const ids=['study-parks-fill','study-parks-line','study-selected-park'];
-  let ready=false;
+  let ready=false,selectedPark=null,selectionVersion=0;
 
   function colorExpression(){return ['match',['get','TYPE_GROUP'],...Object.entries(App.config.parkColors).flat(),'#899b89'];}
   function renderLegend(){document.querySelector('#study-park-legend').innerHTML=Object.entries(App.config.parkColors).map(([name,color])=>`<span><i style="background:${color}"></i>${name}</span>`).join('');}
@@ -73,14 +73,22 @@
   async function showPark(feature){
     const clicked=feature.properties,name=String(clicked.NAME||'');
     App.Components.MapViewMode?.pauseForSelection('study');
+    selectedPark=name;const version=++selectionVersion;
     mm.map.setFilter('study-selected-park',['==',['get','NAME'],name]);
     panel.open('#study-panel',panel.loading('OFFICIAL PARK · LINKING REVIEWS',clicked.PMA_NAME||name));
     try{
       await Promise.all([loader.load('parkReviews'),loader.load('reviewDetails'),loader.load('reviewPhotoCache')]);
+      if(version!==selectionVersion||selectedPark!==name||App.state.route!=='study')return;
       const park=window.WEBMAP_DATA.parkReviews?.parks?.[name];
       panel.open('#study-panel',parkReviewHtml(clicked,park,window.REVIEW_DETAILS||{},window.REVIEW_PHOTO_CACHE||{}));
       bindReviewImages();
-    }catch(error){panel.open('#study-panel',`<span class="panel-kicker">DATA ERROR</span><h2 class="panel-title">Unable to link park reviews</h2><p class="panel-copy">${esc(error.message)}</p>`);}
+    }catch(error){if(version===selectionVersion&&selectedPark===name&&App.state.route==='study')panel.open('#study-panel',`<span class="panel-kicker">DATA ERROR</span><h2 class="panel-title">Unable to link park reviews</h2><p class="panel-copy">${esc(error.message)}</p>`);}
+  }
+
+  function clearSelection(options={}){
+    selectedPark=null;selectionVersion++;mm.map.stop();panel.close('#study-panel');
+    if(mm.map?.getLayer('study-selected-park'))mm.map.setFilter('study-selected-park',['==',['get','NAME'],'__none__']);
+    if(options.release!==false)App.Components.MapViewMode?.releaseSelection('study');
   }
 
   function bind(){
@@ -90,6 +98,7 @@
   }
   App.Pages.study={
     async enter(){document.querySelector('#app').classList.remove('is-map-hidden');renderLegend();panel.close('#study-panel');try{await loader.load('parks');addLayers();mm.setVisible(ids);bind();App.Components.MapViewMode?.enter('study');}catch(error){App.utils.toast(error.message);}},
-    exit(){App.Components.MapViewMode?.exit('study');panel.close('#study-panel');if(mm.map?.getLayer('study-selected-park'))mm.map.setFilter('study-selected-park',['==',['get','NAME'],'__none__']);}
+    exit(){App.Components.MapViewMode?.exit('study');clearSelection({release:false});},
+    clearSelection
   };
 })(window.SeattleApp);

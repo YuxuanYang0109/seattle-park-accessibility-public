@@ -11,6 +11,7 @@
 .map-view-toggle .orbit-dot{fill:#a577ad;stroke:none;transform-origin:12px 12px}
 .map-view-toggle.is-orbit{background:rgba(245,241,248,.88)}
 .map-view-toggle.is-orbit svg{stroke:#8c699d}.map-view-toggle.is-orbit .orbit-dot{animation:map-orbit-dot 3.8s linear infinite}
+.map-view-toggle.is-paused .orbit-dot{animation-play-state:paused;opacity:.45}.map-view-toggle.is-paused b{color:#8c699d}
 @keyframes map-orbit-dot{to{transform:rotate(360deg)}}
 @media(max-width:760px){
   .map-page-title{right:128px}
