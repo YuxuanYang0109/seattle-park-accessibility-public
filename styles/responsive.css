@@ -6,3 +6,23 @@
 @media(max-width:760px){.accessibility-page .access-legend{top:166px;left:13px;right:13px;width:auto;padding:10px}.access-selector-heading{margin-bottom:8px}.access-metric-options{grid-template-columns:repeat(4,1fr);gap:5px}.access-metric-option{height:44px;padding:5px;justify-content:center}.access-option-icon{width:27px;height:27px;flex-basis:27px}.access-option-icon svg{width:17px;height:17px}.access-metric-option>span:last-child{display:none}.accessibility-page .gradient-bar{margin-top:9px}.accessibility-page .access-legend>small{display:none}}
 @media(max-width:480px){.accessibility-page .access-legend{top:166px}.access-selector-heading b{font-size:9px}.selected-metric-card{padding-right:92px}}
 @media(max-width:760px){.study-page #study-panel{width:auto;padding:20px}.park-review-layout{grid-template-columns:1fr;gap:18px}.park-reviews-column{padding:18px 0 0;border-left:0;border-top:1px solid rgba(94,106,118,.13)}.park-review-item .panel-gallery img{height:170px}}
+
+@media(max-width:1050px){
+  .home-copy{top:104px;left:3vw;width:min(680px,72vw)}
+  .home-research-title>span{font-size:clamp(29px,3.7vw,42px)}
+}
+@media(max-width:760px){
+  .home-copy{top:88px;left:18px;width:calc(100% - 36px)}
+  .home-copy .eyebrow{font-size:6.5px;margin-bottom:9px}
+  .home-research-title>span{font-size:clamp(23px,6.2vw,30px);line-height:1.12}
+  .home-copy .home-research-title>em{max-width:94%;margin-top:10px;font-size:11px;line-height:1.3}
+  .home-team{margin-top:13px;padding:11px 12px;grid-template-columns:1fr;gap:9px;border-radius:15px}
+  .home-team span{font-size:6.2px;margin-bottom:3px}.home-team strong{font-size:9.5px;line-height:1.42}
+  .home-story-card{display:none}
+  #app[data-route="home"] .maplibregl-ctrl-top-right{display:none}
+}
+@media(max-width:480px){
+  .home-research-title>span{font-size:23px}
+  .home-copy .home-research-title>em{font-size:10.5px}
+  .home-team strong{font-size:9px}
+}
